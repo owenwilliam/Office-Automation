@@ -14,6 +14,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    Struts2　and Spring  together!<br>
+    Struts2　and Spring and Hibernate together success!<br>
   </body>
 </html>
