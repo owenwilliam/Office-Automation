@@ -9,14 +9,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.linjw.myoa.base.BaseDao;
-
+@SuppressWarnings("unchecked")
 public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 
 	@Resource
 	private SessionFactory sessionFactory;
 	private Class<T> clazz;
-	//使用反射技术得到T的真实类型
-	@SuppressWarnings("unchecked")
+	
+	/**
+	 * 使用反射技术得到T的真实类型
+	 */
 	public BaseDaoImpl(){
 		
 		ParameterizedType pt = (ParameterizedType)this.getClass().getGenericSuperclass();//获取当前new的对象的泛型的父类类型
@@ -30,11 +32,21 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 	protected Session getSession(){
 		return sessionFactory.getCurrentSession();
 	}
-	
+	/**
+	 * 保存实体
+	 */
 	public void save(T entity){
 		getSession().save(entity);
 	}
-	
+	/**
+	 * 更新实体
+	 */
+	public void update(T entity){
+		getSession().update(entity);
+	}
+	/**
+	 * 删除实体
+	 */
 	public void delete(long id){
 		Object obj = getById(id);
 		if(obj != null){
@@ -42,18 +54,25 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
+	/**
+	 * 按一个ID查询实体
+	 */
 	public T getById(long id){
 		return (T) getSession().get(clazz,id);
 	}
 	
-	@SuppressWarnings("unchecked")
+	/**
+	 * 按多个ID查询实体
+	 */
 	public List<T> getByIds(long[] ids){
 		return getSession().createQuery("from User where id in(:ids)").setParameter("ids",ids).list();
 	}
 	
-	@SuppressWarnings("unchecked")
+	/**
+	 * 查询所有的ID
+	 */
 	public List<T> findAll(){
+System.out.println("clazz.getSimpleName()"+clazz.getSimpleName());
 		return getSession().createQuery("from "+clazz.getSimpleName()).list();
 	}
 }
