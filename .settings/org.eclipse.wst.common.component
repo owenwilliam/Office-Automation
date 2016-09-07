@@ -6,6 +6,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/config"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <property name="java-output-path" value="/MyOA_01/WebRoot/WEB-INF/classes"/>
-        <property name="context-root" value="/MyOA_02"/>
+        <property name="context-root" value="/MyOA_03"/>
     </wb-module>
 </project-modules>
