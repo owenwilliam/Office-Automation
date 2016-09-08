@@ -1,14 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+
 <html>
 <head>
 	<title>部门设置--修改</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
-    <script language="javascript" src="${pageContext.request.contextPath}/script/pageCommon.js" charset="utf-8"></script>
-    <script language="javascript" src="${pageContext.request.contextPath}/script/PageUtils.js" charset="utf-8"></script>
-    
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/blue/pageCommon.css" />
+  　<%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
 </head>
 <body>
 
@@ -36,15 +31,11 @@
             <div class="ItemBlock">
                 <table cellpadding="0" cellspacing="0" class="mainForm">
                     <tr><td width="100">上级部门</td>
-                        <td><select name="parentId" class="SelectStyle">
-                                <option value="0" selected="selected">请选择部门</option>
-                                <option value="7">┠总经理室</option>
-                                <option value="1">┠市场部</option>
-                                <option value="2">　┠咨询部</option>
-                                <option value="3">　┠招生部</option>
-                                <option value="4">┠教学部</option>
-                                <option value="5">┠后勤部</option>
-                            </select>
+                      
+                        <td>
+                        <s:select name="parentId" cssClass="SelectStyle"
+                        list="#departmentList" listKey="id" listValue="name"
+                        headerKey="" headerValue="==请选择部门=="/>
                         </td>
                     </tr>
                     <tr><td>部门名称</td>

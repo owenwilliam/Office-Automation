@@ -12,7 +12,7 @@ public interface BaseDao<T> {
 	 * 删除实体
 	 * @param id
 	 */
-	public void delete(long id);
+	public void delete(Long id);
 	/**
 	 * 更新实体
 	 * @param entity
@@ -23,13 +23,13 @@ public interface BaseDao<T> {
 	 * @param id
 	 * @return
 	 */
-	public T getById(long id);
+	public T getById(Long id);
 	/**
 	 * 按多个ID查询实体
 	 * @param ids
 	 * @return
 	 */
-	public List<T> getByIds(long[] ids);
+	public List<T> getByIds(Long[] ids);
 	/**
 	 * 查询所有的ID
 	 * @return

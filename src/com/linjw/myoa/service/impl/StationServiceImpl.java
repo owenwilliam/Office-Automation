@@ -21,7 +21,7 @@ public class StationServiceImpl implements StationService {
 		return stationDao.findAll();
 	}
    //删除岗位
-	public void detele(long id) { 
+	public void detele(Long id) { 
 		stationDao.delete(id);
 	}
    //保存岗位
@@ -29,7 +29,7 @@ public class StationServiceImpl implements StationService {
         stationDao.save(station);
 	}
   //通过ID查找某个岗位
-	public Station getById(long id) {
+	public Station getById(Long id) {
 		return stationDao.getById(id);
 	}
   //更新岗位信息
