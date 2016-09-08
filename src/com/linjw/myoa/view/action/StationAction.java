@@ -13,8 +13,10 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+
 @Controller
 @Scope("prototype")
+@SuppressWarnings("serial")
 public class StationAction extends ActionSupport implements ModelDriven<Station>{
 
 	@Resource

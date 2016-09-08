@@ -1,11 +1,28 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping>
-  <class table="t_user" name="com.linjw.myoa.model.User">
+<hibernate-mapping package="com.linjw.myoa.model">
+  <class table="t_user" name="User">
     <id name="id">
       <generator class="native"/>
     </id>
+    <property name="loginName"/>
+    <property name="password"/>
     <property name="name"/>
+    <property name="gender"/>
+    <property name="phoneNumber"/>
+    <property name="email"/>
+    <property name="description"/>
+    
+    
+    <!-- department属性，本类与Department的多对一 -->
+    <many-to-one name="department" class="Department" column="departmentId"></many-to-one>
+   
+   
+     <!-- stations属性，本类与Station的多对多 -->   
+     <set name="stations" table="station_user">
+       <key column="userId"></key>
+      <many-to-many class="Station" column="stationId"></many-to-many>
+     </set> 
   </class>
 </hibernate-mapping>

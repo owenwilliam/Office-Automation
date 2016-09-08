@@ -7,6 +7,6 @@ import com.linjw.myoa.dao.DepartmentDao;
 import com.linjw.myoa.model.Department;
 
 @Repository
-public class DerpartmentDaoImpl extends BaseDaoImpl<Department> implements DepartmentDao{
+public class DepartmentDaoImpl extends BaseDaoImpl<Department> implements DepartmentDao{
 
 }

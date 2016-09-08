@@ -47,7 +47,7 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 	/**
 	 * 删除实体
 	 */
-	public void delete(long id){
+	public void delete(Long id){
 		Object obj = getById(id);
 		if(obj != null){
 			getSession().delete(obj);
@@ -57,14 +57,19 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 	/**
 	 * 按一个ID查询实体
 	 */
-	public T getById(long id){
+	public T getById(Long id){
+System.out.println("id="+id);
+		if(id == null){
+			return null;
+		}else{
 		return (T) getSession().get(clazz,id);
+		}
 	}
 	
 	/**
 	 * 按多个ID查询实体
 	 */
-	public List<T> getByIds(long[] ids){
+	public List<T> getByIds(Long[] ids){
 		return getSession().createQuery("from User where id in(:ids)").setParameter("ids",ids).list();
 	}
 	

@@ -8,7 +8,7 @@
   <!--   <constant name="struts.enable.DynamicMethodInvocation" value="false" /> -->
    <!-- 配置为开发模式，改动时不需要重启服务器 -->
     <constant name="struts.devMode" value="true" />
-    <!-- 把扩展名配置为action,使用时必须为xx.action -->
+    <!-- 把扩展名配置为action,使用时必须为xx.action ,在解决懒加载时用到-->
     <constant name="struts.action.extension" value="action"/>
   <!-- 把主题配置为simple，也就是说页面固定不能更改 -->
   <constant name="struts.ui.theme" value="simple"/>
@@ -40,7 +40,7 @@
       <result name="list">/WEB-INF/jsp/departmentAction/list.jsp</result>
      <result name="addUI">/WEB-INF/jsp/departmentAction/addUI.jsp</result>
      <result name="editUI">/WEB-INF/jsp/departmentAction/editUI.jsp</result>
-     <result name="toList" type="redirectAction">department_list</result>
+     <result name="toList" type="redirectAction">department_list?parentId=${parentId}</result>
      
       </action>
     </package>
