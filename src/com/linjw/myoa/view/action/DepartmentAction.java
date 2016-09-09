@@ -2,38 +2,28 @@ package com.linjw.myoa.view.action;
 
 import java.util.List;
 
-import javax.annotation.Resource;
+
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.linjw.myoa.base.BaseAction;
 import com.linjw.myoa.model.Department;
-import com.linjw.myoa.service.DepartmentService;
+
 import com.linjw.myoa.util.DepartmentUtils;
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 @Controller
 @Scope("prototype")
-public class DepartmentAction extends ActionSupport implements ModelDriven<Department>{
-	
-	@Resource
-	private DepartmentService departmentService;
-	
-	private Department model = new Department();
+@SuppressWarnings("serial")
+public class DepartmentAction extends BaseAction<Department>{
+
 	
 	private Long parentId;
-	public Department getModel() {
-		
-		return model;
-	}
 
 	/**
 	 * 列表
 	 */
 	public String list()throws Exception{
-	//	List<Department> departmentList = departmentService.findAll();
-		
 		List<Department> departmentList = null;
 		  if(parentId == null){//顶级部门列表
 			departmentList = departmentService.findToList();
@@ -50,7 +40,7 @@ public class DepartmentAction extends ActionSupport implements ModelDriven<Depar
 	 * 删除
 	 */
 	public String delete()throws Exception{
-		departmentService.detele(model.getId());
+		departmentService.delete(model.getId());
 		return "toList";
 	}
 	/**
@@ -58,7 +48,6 @@ public class DepartmentAction extends ActionSupport implements ModelDriven<Depar
 	 */
 	public String addUI()throws Exception{
 		//准备回显数据，departmentList
-	//	List<Department>  departmentList = departmentService.findAll();
 		List<Department> topList = departmentService.findToList();
 		List<Department> departmentList = DepartmentUtils.getAllDepartments(topList);
 		ActionContext.getContext().put("departmentList",departmentList);
@@ -68,7 +57,7 @@ public class DepartmentAction extends ActionSupport implements ModelDriven<Depar
 	 * 添加成功后
 	 */
 	public String add()throws Exception{
-		//封闭信息到对象中
+		//封装信息到对象中
 		Department parent = departmentService.getById(parentId);//通过父类的Id查对象
 		//保存到model中,因为数据库中没有parent这一项
 		model.setParent(parent);
@@ -81,15 +70,14 @@ public class DepartmentAction extends ActionSupport implements ModelDriven<Depar
 	 */
 	
 	public String editUI()throws Exception{
-		//准备回显数据
-	//	List<Department>  departmentList = departmentService.findAll();
+		//准备回显数据，上级部门树状显示
 		List<Department> topList = departmentService.findToList();
 		List<Department> departmentList = DepartmentUtils.getAllDepartments(topList);
 		ActionContext.getContext().put("departmentList",departmentList);
 		
-		Department department = departmentService.getById(model.getId());
-		ActionContext.getContext().getValueStack().push(department);
-		//回显部门名称
+		Department department = departmentService.getById(model.getId());//通过Id号获得相应的对象，
+		ActionContext.getContext().getValueStack().push(department);//然后放到栈顶，拿的时候就直接根据名称来了
+		//重新定义parentId的值
 		if (department.getParent() != null) {
 			parentId = department.getParent().getId();
 		}
@@ -109,15 +97,11 @@ public class DepartmentAction extends ActionSupport implements ModelDriven<Depar
 		//修改对象
 		return "toList";
 	}
-
 	public Long getParentId() {
 		return parentId;
 	}
-
 	public void setParentId(Long parentId) {
 		this.parentId = parentId;
 	}
-
-
 
 }

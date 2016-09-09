@@ -16,6 +16,7 @@ public class Station {
       
       //关联
       private Set<User> users = new HashSet<User>();
+      private Set<Privilege> privileges = new HashSet<Privilege>();
       
       
 
@@ -42,6 +43,12 @@ public class Station {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public Set<Privilege> getPrivileges() {
+		return privileges;
+	}
+	public void setPrivileges(Set<Privilege> privileges) {
+		this.privileges = privileges;
 	}
 	
 }

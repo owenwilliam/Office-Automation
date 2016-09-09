@@ -2,30 +2,21 @@ package com.linjw.myoa.view.action;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
+import com.linjw.myoa.base.BaseAction;
 import com.linjw.myoa.model.Station;
-import com.linjw.myoa.service.StationService;
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
+
 
 
 @Controller
 @Scope("prototype")
 @SuppressWarnings("serial")
-public class StationAction extends ActionSupport implements ModelDriven<Station>{
+public class StationAction extends BaseAction<Station>{
 
-	@Resource
-	private StationService stationService;
-	private Station model = new Station();
-
-	public Station getModel() {
-		return model;
-	}
+//	private Station model = new Station();
 	
 	/** 列表显示*/
 	public String list() throws Exception{
@@ -35,7 +26,7 @@ public class StationAction extends ActionSupport implements ModelDriven<Station>
 	}
 	/**删除*/
 	public String delete()throws Exception{
-		stationService.detele(model.getId());
+		stationService.delete(model.getId());
 		return "toList";
 	}
 	/**添加页面*/

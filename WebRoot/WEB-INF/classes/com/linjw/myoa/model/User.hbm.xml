@@ -20,7 +20,7 @@
    
    
      <!-- stations属性，本类与Station的多对多 -->   
-     <set name="stations" table="station_user">
+     <set name="stations" table="station_user" lazy="false">
        <key column="userId"></key>
       <many-to-many class="Station" column="stationId"></many-to-many>
      </set> 

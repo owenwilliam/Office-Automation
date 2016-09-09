@@ -1,19 +1,9 @@
 package com.linjw.myoa.service;
 
-import java.util.List;
-
+import com.linjw.myoa.base.DaoSupport;
 import com.linjw.myoa.model.Station;
 
-public interface StationService {
+public interface StationService extends DaoSupport<Station>{
 
-	//查询所有
-	public List<Station> findAll();
-	//删除实体
-	public void detele(Long id);
-	//保存实体
-	public void save(Station station);
-	//通过ID查询实体
-	public Station getById(Long id);
-	//更新实体
-	public void update(Station station);
+	
 }
