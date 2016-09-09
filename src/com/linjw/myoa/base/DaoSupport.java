@@ -2,7 +2,9 @@ package com.linjw.myoa.base;
 
 import java.util.List;
 
-public interface BaseDao<T> {
+public interface DaoSupport<T> {
+	
+	
 	/**
 	 * 保存实体
 	 * @param entity

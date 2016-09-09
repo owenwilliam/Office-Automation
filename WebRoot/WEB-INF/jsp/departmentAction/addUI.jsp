@@ -34,14 +34,15 @@
                         <td>
                         <s:select name="parentId" cssClass="SelectStyle"
                         list="#departmentList" listKey="id" listValue="name"
-                        headerKey="" headerValue="==请选择部门=="/>
+                        headerKey="" headerValue="==请选择部门==" 
+                        />
                         </td>
                     </tr>
                     <tr><td>部门名称</td>
                         <td><s:textfield name="name" cssClass="InputStyle" /> *</td>
                     </tr>
                     <tr><td>职能说明</td>
-                        <td><s:textarea name="description" class="TextareaStyle"/></td>
+                        <td><s:textarea name="description" cssClass="TextareaStyle"></s:textarea></td>
                     </tr>
                 </table>
             </div>

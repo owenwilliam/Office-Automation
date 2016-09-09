@@ -30,6 +30,7 @@
 	<mapping resource="com/linjw/myoa/model/User.hbm.xml" />
 	<mapping resource="com/linjw/myoa/model/Station.hbm.xml" />
 	<mapping resource="com/linjw/myoa/model/Department.hbm.xml" />
+	<mapping resource="com/linjw/myoa/model/Privilege.hbm.xml" />
 
 </session-factory>
 

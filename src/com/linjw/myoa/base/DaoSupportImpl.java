@@ -1,16 +1,21 @@
-package com.linjw.myoa.base.impl;
+package com.linjw.myoa.base;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.linjw.myoa.base.BaseDao;
+
+//@Transactional注解可以被继承
+//@Transactional注解对父类中声明的方法无效
+@Transactional
 @SuppressWarnings("unchecked")
-public abstract class BaseDaoImpl<T> implements BaseDao<T> {
+public abstract class DaoSupportImpl<T> implements DaoSupport<T> {
 
 	@Resource
 	private SessionFactory sessionFactory;
@@ -19,7 +24,7 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 	/**
 	 * 使用反射技术得到T的真实类型
 	 */
-	public BaseDaoImpl(){
+	public DaoSupportImpl(){
 		
 		ParameterizedType pt = (ParameterizedType)this.getClass().getGenericSuperclass();//获取当前new的对象的泛型的父类类型
 	     this.clazz = (Class<T>)pt.getActualTypeArguments()[0];//获取第一个类型参数的真实类型
@@ -58,7 +63,6 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 	 * 按一个ID查询实体
 	 */
 	public T getById(Long id){
-System.out.println("id="+id);
 		if(id == null){
 			return null;
 		}else{
@@ -70,9 +74,16 @@ System.out.println("id="+id);
 	 * 按多个ID查询实体
 	 */
 	public List<T> getByIds(Long[] ids){
-		return getSession().createQuery("from User where id in(:ids)").setParameter("ids",ids).list();
+		if(ids == null || ids.length == 0){
+			return Collections.EMPTY_LIST;
+		}else{
+		return getSession().createQuery(
+		"from "+clazz.getSimpleName()+" where id in (:ids)")
+		.setParameterList("ids",ids)
+		.list();
+
+		}
 	}
-	
 	/**
 	 * 查询所有的ID
 	 */
