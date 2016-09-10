@@ -39,7 +39,8 @@
 				<td>
 					<s:a action="station_delete?id=%{id}" onclick="return confirm('确定要删除吗？')">删除</s:a>
 					<s:a action="station_editUI?id=%{id}">修改</s:a>
-					<a >设置权限</a>
+					<s:a action="station_setPrivilegeUI?id=%{id}">设置权限</s:a>
+					&nbsp;
 				</td>
 			</tr>
         </s:iterator>

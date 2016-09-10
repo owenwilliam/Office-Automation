@@ -15,9 +15,21 @@ public class Privilege {
 	private Set<Station> stations = new HashSet<Station>();//与岗位关联
 	private Privilege parent;//上级
 	private Set<Privilege> children = new HashSet<Privilege>();//下级
+	
+	public Privilege() {
+		
+	}
+	
+	public Privilege(String name,String url, Privilege parent) {
+		super();
+		this.url = url;
+		this.name = name;
+		this.parent = parent;
+	}
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}

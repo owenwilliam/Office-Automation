@@ -5,7 +5,11 @@ import java.util.Collection;
 import java.util.List;
 
 import com.linjw.myoa.model.Department;
-
+/**
+ * 
+ * @author 林剑文　　2014-7-7
+ *部门的树状显示，用到递归函数
+ */
 public class DepartmentUtils {
 
 	/**
