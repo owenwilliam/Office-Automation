@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <display-name></display-name>	
- <!-- 配置Spring的用于初始化窗器对象监听器 --> 
+ <!-- 配置Spring的用于初始化窗口对象监听器 --> 
  <listener>
   <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 </listener>
@@ -15,6 +15,10 @@
   <param-value>classpath:applicationContext*.xml</param-value>
 </context-param>
  
+ <!-- 用于做初始化工作的监听器，一定要配置到Spring的ContextLoaderListener之后，因为要用到Spring的容器对象 -->
+ <listener>
+  <listener-class>com.linjw.myoa.util.InitListener</listener-class>
+ </listener>
  <!-- 配置Spring用于解决懒加载问题的过滤器 -->
  <filter>
       <filter-name>OpenSessionInViewFilter</filter-name>

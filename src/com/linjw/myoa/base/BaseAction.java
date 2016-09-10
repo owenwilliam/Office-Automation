@@ -5,6 +5,8 @@ import java.lang.reflect.ParameterizedType;
 import javax.annotation.Resource;
 
 import com.linjw.myoa.service.DepartmentService;
+import com.linjw.myoa.service.ForumService;
+import com.linjw.myoa.service.PrivilegeService;
 import com.linjw.myoa.service.StationService;
 import com.linjw.myoa.service.UserService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -44,5 +46,9 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 	protected DepartmentService departmentService;
 	@Resource
 	protected UserService userService;
+	@Resource
+	protected PrivilegeService privilegeService;
+	@Resource
+	protected ForumService forumService;
 	
 }

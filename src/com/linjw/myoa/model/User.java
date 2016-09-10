@@ -1,7 +1,10 @@
 package com.linjw.myoa.model;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.opensymphony.xwork2.ActionContext;
 
 /**
  * 
@@ -24,6 +27,71 @@ public class User {
 	private Department department;
 	private Set<Station> stations = new HashSet<Station>();
 
+	/**
+	 * 判断本用户是否指定名称的权限
+	 * @return
+	 */
+	public boolean hasPrivilegeByName(String name){
+		
+		//超级管理员拥有所有的权取限
+		if(isAdmin()){
+			return true;
+		}
+		
+		for(Station station:stations){
+			for(Privilege priv :station.getPrivileges()){
+				if(priv.getName().equals(name)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * 判断用户是否有指定URL的权限
+	 * @param privUrl
+	 * @return
+	 */
+	public boolean hasPrivilegeByUrl(String privUrl){
+		//超级管理员所有权限
+		if(isAdmin()){
+			return true;
+		}
+		//>>去掉后面的参数
+		int pos = privUrl.indexOf("?");
+		if(pos > -1){
+			privUrl = privUrl.substring(0,pos);
+		}
+		//>>去掉UI后缀
+		if(privUrl.endsWith("UI")){
+			privUrl = privUrl.substring(0,privUrl.length()-2);
+		}
+		//如果URL不需要控制，则登录用户就可以使用。　　去最大的作用域中拿allPrivilegeUrls
+		Collection<String> allPrivilegeUrls = (Collection<String>) ActionContext.getContext().getApplication().get("allPrivilegeUrls");
+	    if(!allPrivilegeUrls.contains(privUrl)){
+	    	return true;
+	    	
+	    }else{
+	    	//普通用户要判断是否含有这个权限
+	    	for(Station station : stations){
+	    		for(Privilege priv :station.getPrivileges()){
+	    			if(privUrl.equals(priv.getUrl())){
+	    				return true;
+	    			}
+	    		}
+	    	}
+	    	return  false;
+	    }
+	  }
+	
+	/**
+	 * 判断本用户是否是超级管理员
+	 * @return
+	 */
+	public boolean isAdmin(){
+		return "admin".equals(loginName);
+	}
 	public String getLoginName() {
 		return loginName;
 	}
