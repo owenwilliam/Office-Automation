@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.linjw.myoa.model">
+  <class table="t_Reply" name="Reply">
+    <id name="id">
+      <generator class="native"/>
+    </id>
+    <property name="title"/>
+    <property name="content" type="text" length="65536"/>
+    <property name="postTime" type="timestamp"/>
+    <property name="iPAddr"/>
+
+      
+      <!-- author属性，本类与User的多对一 -->
+          	<many-to-one name="author" class="User" column="authorId"></many-to-one>
+		
+		<!-- topic属性，本类与Topic的多对一-->
+		<many-to-one name="topic" class="Topic" column="topicId"></many-to-one>
+		
+  </class>
+</hibernate-mapping>

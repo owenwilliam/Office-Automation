@@ -38,7 +38,7 @@
                     </tr>
                     <tr>
                         <td>版块说明</td>
-                        <td><s:textarea name="description" class="TextareaStyle"></s:textarea></td>
+                        <td><s:textarea name="description" cssClass="TextareaStyle"></s:textarea></td>
                     </tr>
                 </table>
             </div>

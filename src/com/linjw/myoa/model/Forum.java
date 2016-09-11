@@ -1,5 +1,13 @@
 package com.linjw.myoa.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * 版块
+ * @author 林剑文　2014-7-12
+ *
+ */
 public class Forum {
 	
 	private Long id;
@@ -7,6 +15,10 @@ public class Forum {
 	private String description;
 	private int position;//用来排序位置
 	
+	private Set<Topic> topics = new HashSet<Topic>();
+	private int topicCount;//主题数量
+	private int articleCount;//文章数量
+	private Topic lastTopic;//最后发表的主题
 	
 	
 	public Long getId() {
@@ -32,6 +44,30 @@ public class Forum {
 	}
 	public void setPosition(int position) {
 		this.position = position;
+	}
+	public Set<Topic> getTopics() {
+		return topics;
+	}
+	public void setTopics(Set<Topic> topics) {
+		this.topics = topics;
+	}
+	public int getTopicCount() {
+		return topicCount;
+	}
+	public void setTopicCount(int topicCount) {
+		this.topicCount = topicCount;
+	}
+	public int getArticleCount() {
+		return articleCount;
+	}
+	public void setArticleCount(int articleCount) {
+		this.articleCount = articleCount;
+	}
+	public Topic getLastTopic() {
+		return lastTopic;
+	}
+	public void setLastTopic(Topic lastTopic) {
+		this.lastTopic = lastTopic;
 	}
 
 }
