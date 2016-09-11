@@ -34,11 +34,11 @@
                 <table cellpadding="0" cellspacing="0" class="mainForm">
                     <tr>
                         <td width="100">版块名称</td>
-                        <td><input type="text" name="name" class="InputStyle" /> *</td>
+                        <td><s:textfield name="name" cssClass="InputStyle" /> *</td>
                     </tr>
                     <tr>
                         <td>版块说明</td>
-                        <td><textarea name="description" class="TextareaStyle"></textarea></td>
+                        <td><s:textarea name="description" cssClass="TextareaStyle"></s:textarea></td>
                     </tr>
                 </table>
             </div>
