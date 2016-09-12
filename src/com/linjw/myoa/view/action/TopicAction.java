@@ -1,6 +1,8 @@
 package com.linjw.myoa.view.action;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -28,8 +30,15 @@ public class TopicAction extends BaseAction<Topic>{
 		/*//准备数据：replyList
 		List<Reply> replyList = replyService.findByTopic(topic);
 		ActionContext.getContext().put("replyList", replyList);*/
-		//准备分页信息　v1
+	/*	//准备分页信息　v1
 		PageBean pageBean = replyService.getPageBeanByTopic(pageNum,pageSize,topic);
+		ActionContext.getContext().getValueStack().push(pageBean);*/
+		//准备分布信息　v2
+		String hql = "from Reply r where r.topic=? order by r.postTime asc";
+		List<Object> parameters = new ArrayList<Object>();
+		parameters.add(topic);
+		
+		PageBean pageBean = replyService.getPageBean(pageNum,pageSize,hql,parameters);
 		ActionContext.getContext().getValueStack().push(pageBean);
 		return "show";
 	}

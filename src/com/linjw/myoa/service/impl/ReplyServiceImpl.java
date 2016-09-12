@@ -65,4 +65,5 @@ public class ReplyServiceImpl extends DaoSupportImpl<Reply> implements ReplyServ
 		return new PageBean(pageNum, pageSize, count.intValue(), list);//将值传回给PageBean
 	}
 
+	
 }
