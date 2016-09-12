@@ -6,9 +6,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.linjw.myoa.model.PageBean;
 
 
 //@Transactional注解可以被继承
@@ -88,7 +91,38 @@ public abstract class DaoSupportImpl<T> implements DaoSupport<T> {
 	 * 查询所有的ID
 	 */
 	public List<T> findAll(){
-System.out.println("clazz.getSimpleName()"+clazz.getSimpleName());
 		return getSession().createQuery("from "+clazz.getSimpleName()).list();
 	}
+	
+	
+	/**
+	 *  公共的查询分页信息的方法(non-Javadoc)
+	 * @see com.linjw.myoa.base.DaoSupport#getPageBean(int, int, java.lang.String, java.util.List)
+	 */
+
+		public PageBean getPageBean(int pageNum, int pageSize, String hql, List<Object> parameters) {
+			System.out.println("-------> DaoSupportImpl.getPageBean()");
+
+			// 查询本页的数据列表
+			Query listQuery = getSession().createQuery(hql); // 创建查询对象
+			if (parameters != null) { // 设置参数
+				for (int i = 0; i < parameters.size(); i++) {
+					listQuery.setParameter(i, parameters.get(i));
+				}
+			}
+			listQuery.setFirstResult((pageNum - 1) * pageSize);
+			listQuery.setMaxResults(pageSize);
+			List list = listQuery.list(); // 执行查询
+
+			// 查询总记录数量
+			Query countQuery = getSession().createQuery("SELECT COUNT(*) " + hql);
+			if (parameters != null) { // 设置参数
+				for (int i = 0; i < parameters.size(); i++) {
+					countQuery.setParameter(i, parameters.get(i));
+				}
+			}
+			Long count = (Long) countQuery.uniqueResult(); // 执行查询
+
+			return new PageBean(pageNum, pageSize, count.intValue(), list);
+		}
 }

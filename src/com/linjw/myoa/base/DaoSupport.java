@@ -2,6 +2,8 @@ package com.linjw.myoa.base;
 
 import java.util.List;
 
+import com.linjw.myoa.model.PageBean;
+
 public interface DaoSupport<T> {
 	
 	
@@ -37,5 +39,20 @@ public interface DaoSupport<T> {
 	 * @return
 	 */
 	public List<T> findAll();
+	
+	
+	/**
+	 * 公共的查询分页信息的方法
+	 * 
+	 * @param pageNum
+	 * @param pageSize
+	 * @param hql
+	 *            查询数据列表的HQL
+	 * @param parameters
+	 *            参数列表，与HQL中问号一一对应
+	 * @return
+	 */
+
+	PageBean getPageBean(int pageNum, int pageSize, String hql, List<Object> parameters);
 
 }

@@ -17,6 +17,8 @@ public interface ReplyService extends DaoSupport<Reply>{
 	 * @param topic
 	 * @return
 	 */
+	@Deprecated
 	public PageBean getPageBeanByTopic(int pageNum, int pageSize, Topic topic) ;
+	
 
 }
