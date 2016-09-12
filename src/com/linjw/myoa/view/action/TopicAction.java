@@ -1,7 +1,6 @@
 package com.linjw.myoa.view.action;
 
 import java.util.Date;
-import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import com.linjw.myoa.base.BaseAction;
 import com.linjw.myoa.model.Forum;
-import com.linjw.myoa.model.Reply;
+import com.linjw.myoa.model.PageBean;
 import com.linjw.myoa.model.Topic;
 import com.opensymphony.xwork2.ActionContext;
 @Controller
@@ -26,9 +25,12 @@ public class TopicAction extends BaseAction<Topic>{
 		//准备数据　：　topic
 		Topic topic = topicService.getById(model.getId());
 		ActionContext.getContext().put("topic",topic);
-		//准备数据：replyList
+		/*//准备数据：replyList
 		List<Reply> replyList = replyService.findByTopic(topic);
-		ActionContext.getContext().put("replyList", replyList);
+		ActionContext.getContext().put("replyList", replyList);*/
+		//准备分页信息　v1
+		PageBean pageBean = replyService.getPageBeanByTopic(pageNum,pageSize,topic);
+		ActionContext.getContext().getValueStack().push(pageBean);
 		return "show";
 	}
   /**

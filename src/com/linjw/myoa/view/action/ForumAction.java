@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import com.linjw.myoa.base.BaseAction;
 import com.linjw.myoa.model.Forum;
-import com.linjw.myoa.model.Topic;
+import com.linjw.myoa.model.PageBean;
 import com.opensymphony.xwork2.ActionContext;
 @Controller
 @Scope("prototype")
@@ -30,9 +30,13 @@ public class ForumAction extends BaseAction<Forum>{
 		Forum forum = forumService.getById(model.getId());
 		ActionContext.getContext().put("forum",forum);
 		
-		//准备数据：topicList
+	/*	//准备数据：topicList
 		List<Topic> topicList = topicService.findByForum(forum);
-		ActionContext.getContext().put("topicList",topicList);
+		ActionContext.getContext().put("topicList",topicList);*/
+		
+		// // 准备分页信息 v1
+		PageBean pageBean = topicService.getPageBeanByForum(pageNum, pageSize, forum);
+		 ActionContext.getContext().getValueStack().push(pageBean);
 		return "show";
 	}
 }

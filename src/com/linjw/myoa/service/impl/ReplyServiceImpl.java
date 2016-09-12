@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.linjw.myoa.base.DaoSupportImpl;
 import com.linjw.myoa.model.Forum;
+import com.linjw.myoa.model.PageBean;
 import com.linjw.myoa.model.Reply;
 import com.linjw.myoa.model.Topic;
 import com.linjw.myoa.service.ReplyService;
@@ -36,6 +37,32 @@ public class ReplyServiceImpl extends DaoSupportImpl<Reply> implements ReplyServ
 		
 		getSession().update(topic);
 		getSession().update(forum);
+	}
+	
+	/**
+	 * 分页显示回复帖子
+	 * @param pageNum
+	 * @param pageSize
+	 * @param topic
+	 * @return
+	 */
+	public PageBean getPageBeanByTopic(int pageNum, int pageSize, Topic topic) {
+
+		// 查询本页的数据列表
+		List list = getSession().createQuery(//
+				"FROM Reply r WHERE r.topic=? ORDER BY r.postTime ASC")//
+				.setParameter(0, topic)//
+				.setFirstResult((pageNum - 1) * pageSize)//从哪个地方开始查询
+				.setMaxResults(pageSize)//一次查找多少个出来　
+				.list();
+
+		// 查询总记录数量
+		Long count = (Long) getSession().createQuery(//
+				"SELECT COUNT(*) FROM Reply r WHERE r.topic=?")//查找出总记录
+				.setParameter(0, topic)//
+				.uniqueResult();
+
+		return new PageBean(pageNum, pageSize, count.intValue(), list);//将值传回给PageBean
 	}
 
 }

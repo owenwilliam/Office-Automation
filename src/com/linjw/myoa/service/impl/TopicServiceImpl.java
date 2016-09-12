@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.linjw.myoa.base.DaoSupportImpl;
 import com.linjw.myoa.model.Forum;
+import com.linjw.myoa.model.PageBean;
 import com.linjw.myoa.model.Topic;
 import com.linjw.myoa.service.TopicService;
 @Service
@@ -35,6 +36,25 @@ public class TopicServiceImpl extends DaoSupportImpl<Topic> implements TopicServ
 	   forum.setLastTopic(topic); // 最后发表的主题
 	   getSession().update(forum);
 	}
+	
+	public PageBean getPageBeanByForum(int pageNum, int pageSize, Forum forum) {
 
+		// 查询本页的数据列表
+		List list = getSession().createQuery(//
+				"FROM Topic t WHERE t.forum=? ORDER BY (CASE t.type WHEN 2 THEN 2 ELSE 0 END) DESC, t.lastUpdateTime DESC")//
+				.setParameter(0, forum)//
+				.setFirstResult((pageNum - 1) * pageSize)//
+				.setMaxResults(pageSize)//
+				.list();
+
+		// 查询总记录数量
+		Long count = (Long) getSession().createQuery(//
+				"SELECT COUNT(*) FROM Topic t WHERE t.forum=?")//
+				.setParameter(0, forum)//
+				.uniqueResult();
+
+		return new PageBean(pageNum, pageSize, count.intValue(), list);
+	}
+	
 
 }
