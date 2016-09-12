@@ -16,7 +16,7 @@ import com.linjw.myoa.model.User;
 /**
  * 
  * @author 林剑文　　　2014-7-10
- *权根的初始化设置
+ *权限的初始化设置
  */
 @Component
 public class Installer {

@@ -4,6 +4,21 @@
 	<title>【${forum.name}】中的主题列表</title>
    <%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/blue/forum.css" />
+		<script type="text/javascript">
+		function onSortByChange( selectedValue ){
+			if(selectedValue == 0){
+				$("select[name=asc]").attr("disabled", "disabled");	
+			}else{
+				$("select[name=asc]").removeAttr("disabled");	
+			}
+		}
+
+		$(function(){
+			if($("select[name=orderBy]").val() == '0'){
+				$("select[name=asc]").attr("disabled", "disabled");		
+			}
+		});
+	</script>
 </head>
 <body>
 
@@ -17,7 +32,7 @@
         <div id="Title_End"></div>
     </div>
 </div>
-
+<s:form action="forum_show?id=%{id}">
 <div id="MainArea">
 	<div id="PageHead"></div>
 	<center>
@@ -87,39 +102,27 @@
 					<table border="0" cellspacing="0" cellpadding="0" height="100%" align="left">
 						<tr valign=bottom>
 							<td></td>
-							<td><select name="viewType">
-									<option value="0">全部主题</option>
-									<option value="1">全部精华贴</option>
-									<!--
-									<option value="2">当天的主题</option>
-									<option value="3">本周的主题</option>
-									<option value="4">本月的主题</option>
-									-->
-								</select>
-								<select name="orderBy">
-									<option value="0">默认排序（按最后更新时间排序，但所有置顶帖都在前面）</option>
-									<option value="1">按最后更新时间排序</option>
-									<option value="2">按主题发表时间排序</option>
-									<option value="3">按回复数量排序</option>
-								</select>
-								<select name="reverse">
-									<option value="true">降序</option>
-									<option value="false">升序</option>
-								</select>
+							<td>
+								<s:select name="viewType" list="#{0:'全部主题',1:'全部精华帖' }"/>
+								<s:select name="orderBy" onchange="onSortByChange(this.value)"
+									list="#{0:'默认排序(所有置顶帖在前面，并按最后更新时间降序排列)', 1:'只按最后更新时间排序', 2:'只按主题发表时间排序', 3:'只按回复数量排序'}"									
+								/>
+								
+								<s:select name="asc" list="#{false:'降序', true:'升序'}"/>
 								<input type="IMAGE" src="${pageContext.request.contextPath}/style/blue/images/button/submit.PNG" align="ABSMIDDLE"/>
 							</td>
 						</tr>
 					</table>
 				</div>
 			</div>
-			
+			</s:form>
 		</div>
 	</center>
 </div>
 
 <!--分页信息-->
 <%@ include file="/WEB-INF/jsp/public/pageView.jspf" %>
-<s:form action="forum_show?id=%{id}"></s:form>
+
 <div class="Description">
 	说明：<br />
 	1，主题默认按最后更新的时间降序排列。最后更新时间是指主题最后回复的时间，如果没有回复，就是主题发表的时间。<br />
