@@ -12,6 +12,7 @@ import com.linjw.myoa.model.Department;
 import com.linjw.myoa.model.Station;
 import com.linjw.myoa.model.User;
 import com.linjw.myoa.util.DepartmentUtils;
+import com.linjw.myoa.util.QueryHelper;
 import com.opensymphony.xwork2.ActionContext;
 
 
@@ -26,8 +27,10 @@ public class UserAction extends BaseAction<User> {
 	 * 列表
 	 */
    public String list() throws Exception{
-	   List<User> userList = userService.findAll();
-	   ActionContext.getContext().put("userList",userList);
+	  /* List<User> userList = userService.findAll();
+	   ActionContext.getContext().put("userList",userList);*/
+		// 准备分页信息
+		new QueryHelper(User.class, "u").preparePageBean(userService, pageNum, pageSize);
 	   return "list";
    }
 	

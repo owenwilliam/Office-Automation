@@ -32,7 +32,7 @@
 		<!--显示数据列表-->
         <tbody id="TableData" class="dataContainer" datakey="stationList">
         
-        <s:iterator value="#stationList">
+        <s:iterator value="recordList">
 			<tr class="TableDetail1 template">
 				<td>${name}&nbsp;</td>
 				<td>${description}&nbsp;</td>
@@ -55,5 +55,8 @@
         </div>
     </div>
 </div>
+<!-- 分页 -->
+<%@ include file="/WEB-INF/jsp/public/pageView.jspf" %>
+		<s:form action="station_list?id=%{id}"></s:form>
 </body>
 </html>

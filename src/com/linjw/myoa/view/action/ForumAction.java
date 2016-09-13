@@ -1,6 +1,5 @@
 package com.linjw.myoa.view.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.Scope;
@@ -8,8 +7,8 @@ import org.springframework.stereotype.Controller;
 
 import com.linjw.myoa.base.BaseAction;
 import com.linjw.myoa.model.Forum;
-import com.linjw.myoa.model.PageBean;
 import com.linjw.myoa.model.Topic;
+import com.linjw.myoa.util.QueryHelper;
 import com.opensymphony.xwork2.ActionContext;
 @Controller
 @Scope("prototype")
@@ -65,7 +64,7 @@ public class ForumAction extends BaseAction<Forum>{
 		PageBean pageBean = topicService.getPageBean(pageNum, pageSize, hql, parameters);
 		ActionContext.getContext().getValueStack().push(pageBean);*/
 		
-		//实现分布信息---选择条件查询v3
+	/*	//实现分布信息---选择条件查询v3
 		String hql = "from Topic t where t.forum=? ";
 		List<Object> parameters = new ArrayList<Object>();
 		parameters.add(forum);
@@ -88,8 +87,22 @@ public class ForumAction extends BaseAction<Forum>{
 		
 		
 		PageBean pageBean = replyService.getPageBean(pageNum, pageSize, hql, parameters);
-		 ActionContext.getContext().getValueStack().push(pageBean);
-		 return "show";
+		 ActionContext.getContext().getValueStack().push(pageBean);*/
+		//准备分页　---　最终版
+		new QueryHelper(Topic.class,"t")//
+			.addCondition("t.forum=?",forum)//
+			.addCondition((viewType == 1),"t.type=?",Topic.TYPE_BEST)// 1 表示只看精华帖
+					// 排序条件
+		    .addOrderProperty((orderBy == 1),"t.lastUpdateTime", asc)// 1 表示只按最后更新时间排序
+	        .addOrderProperty((orderBy == 2),"t.postTime", asc)// 2 表示只按主题发表时间排序
+		    .addOrderProperty((orderBy == 3),"t.replyCount", asc)// 3 表示只按回复数量排序
+			.addOrderProperty((orderBy == 0),"(CASE t.type WHEN 2 THEN 2 ELSE 0 END)", asc)
+			.addOrderProperty((orderBy == 0),"t.lastUpdateTime", false)// 0 表示默认排序(所有置顶帖在前面，并按最后更新时间降序排列)
+			.preparePageBean(topicService, pageNum, pageSize);
+		  
+		
+		
+		return "show";
 	}
 	//---
 	public int getViewType() {
