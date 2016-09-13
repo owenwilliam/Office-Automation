@@ -24,7 +24,7 @@ public class QueryHelper {
 	 * @param alias
 	 */
 	public QueryHelper(Class clazz,String alias){
-		fromClause = "FROM" + clazz.getSimpleName() + " " + alias;
+		fromClause = "FROM " + clazz.getSimpleName() + " " + alias;
 	}
 	
 	/**
@@ -111,5 +111,15 @@ public class QueryHelper {
 		return parameters;
 	}
 	
-	
+	/**
+	 * 查询分页信息，并放到值栈栈顶
+	 * 
+	 * @param service
+	 * @param pageNum
+	 * @param pageSize
+	 */
+	public void preparePageBean(DaoSupport<?> service, int pageNum, int pageSize) {
+		PageBean pageBean = service.getPageBean(pageNum, pageSize, this);
+		ActionContext.getContext().getValueStack().push(pageBean);
+	}
 }

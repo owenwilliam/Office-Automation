@@ -13,12 +13,14 @@
 		</script>
 	</head>
 
-	<body style="margin: 0">
+<body style="margin: 0">
 		<div id="Menu">
+
 			<ul id="MenuUl">
+			
 				<%-- 显示一级菜单 --%>
 				<s:iterator value="#application.topPrivilegeList">
-				　　<s:if test="#session.user.hasPrivilegeByName(name)">
+					<s:if test="#session.user.hasPrivilegeByName(name)">
 					<li class="level1">
 						<div onClick="menuClick(this);" class="level1Style">
 							<img src="style/images/MenuIcon/${id}.gif" class="Icon" />

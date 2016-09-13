@@ -46,6 +46,7 @@ public class ReplyServiceImpl extends DaoSupportImpl<Reply> implements ReplyServ
 	 * @param topic
 	 * @return
 	 */
+	@Deprecated
 	public PageBean getPageBeanByTopic(int pageNum, int pageSize, Topic topic) {
 
 		// 查询本页的数据列表

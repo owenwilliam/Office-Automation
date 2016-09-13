@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import com.linjw.myoa.base.BaseAction;
 import com.linjw.myoa.model.Forum;
 import com.linjw.myoa.model.PageBean;
+import com.linjw.myoa.model.Reply;
 import com.linjw.myoa.model.Topic;
+import com.linjw.myoa.util.QueryHelper;
 import com.opensymphony.xwork2.ActionContext;
 @Controller
 @Scope("prototype")
@@ -33,13 +35,20 @@ public class TopicAction extends BaseAction<Topic>{
 	/*	//准备分页信息　v1
 		PageBean pageBean = replyService.getPageBeanByTopic(pageNum,pageSize,topic);
 		ActionContext.getContext().getValueStack().push(pageBean);*/
-		//准备分布信息　v2
+	/*	//准备分布信息　v2
 		String hql = "from Reply r where r.topic=? order by r.postTime asc";
 		List<Object> parameters = new ArrayList<Object>();
 		parameters.add(topic);
 		
 		PageBean pageBean = replyService.getPageBean(pageNum,pageSize,hql,parameters);
-		ActionContext.getContext().getValueStack().push(pageBean);
+		ActionContext.getContext().getValueStack().push(pageBean);*/
+		
+		//准备分页　---　最终版
+		new QueryHelper(Reply.class,"r")//
+		   .addCondition("r.topic=?",topic)//
+		   .addOrderProperty("r.postTime",true)//
+		   .preparePageBean(replyService, pageNum, pageSize);
+		
 		return "show";
 	}
   /**

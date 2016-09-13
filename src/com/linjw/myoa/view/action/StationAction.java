@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import com.linjw.myoa.base.BaseAction;
 import com.linjw.myoa.model.Privilege;
 import com.linjw.myoa.model.Station;
+import com.linjw.myoa.model.User;
+import com.linjw.myoa.util.QueryHelper;
 import com.opensymphony.xwork2.ActionContext;
 
 
@@ -21,8 +23,10 @@ public class StationAction extends BaseAction<Station>{
   private Long[] privilegeIds;	
 	/** 列表显示*/
 	public String list() throws Exception{
-		List<Station> stationList = stationService.findAll();
-		ActionContext.getContext().put("stationList",stationList);
+		/*List<Station> stationList = stationService.findAll();
+		ActionContext.getContext().put("stationList",stationList);*/
+		// 准备分页信息
+		new QueryHelper(Station.class, "s").preparePageBean(stationService, pageNum, pageSize);
 		return "list";
 	}
 	/**删除*/
