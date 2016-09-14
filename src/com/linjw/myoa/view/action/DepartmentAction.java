@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.linjw.myoa.base.BaseAction;
+import com.linjw.myoa.base.ModelDrivenBaseAction;
 import com.linjw.myoa.model.Department;
 
 import com.linjw.myoa.util.DepartmentUtils;
@@ -15,7 +15,7 @@ import com.opensymphony.xwork2.ActionContext;
 @Controller
 @Scope("prototype")
 @SuppressWarnings("serial")
-public class DepartmentAction extends BaseAction<Department>{
+public class DepartmentAction extends ModelDrivenBaseAction<Department>{
 
 	
 	private Long parentId;

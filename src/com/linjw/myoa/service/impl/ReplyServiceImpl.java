@@ -46,6 +46,7 @@ public class ReplyServiceImpl extends DaoSupportImpl<Reply> implements ReplyServ
 	 * @param topic
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@Deprecated
 	public PageBean getPageBeanByTopic(int pageNum, int pageSize, Topic topic) {
 

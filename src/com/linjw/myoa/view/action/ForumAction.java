@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.linjw.myoa.base.BaseAction;
+import com.linjw.myoa.base.ModelDrivenBaseAction;
 import com.linjw.myoa.model.Forum;
 import com.linjw.myoa.model.Topic;
 import com.linjw.myoa.util.QueryHelper;
@@ -13,7 +13,7 @@ import com.opensymphony.xwork2.ActionContext;
 @Controller
 @Scope("prototype")
 @SuppressWarnings("serial")
-public class ForumAction extends BaseAction<Forum>{
+public class ForumAction extends ModelDrivenBaseAction<Forum>{
 	
 	/**
 	 * 0表示查看全部主题

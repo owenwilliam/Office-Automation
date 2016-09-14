@@ -36,6 +36,7 @@ public class TopicServiceImpl extends DaoSupportImpl<Topic> implements TopicServ
 	   forum.setLastTopic(topic); // 最后发表的主题
 	   getSession().update(forum);
 	}
+	@SuppressWarnings("rawtypes")
 	@Deprecated
 	public PageBean getPageBeanByForum(int pageNum, int pageSize, Forum forum) {
 
