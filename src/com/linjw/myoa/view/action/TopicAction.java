@@ -8,7 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.linjw.myoa.base.BaseAction;
+import com.linjw.myoa.base.ModelDrivenBaseAction;
 import com.linjw.myoa.model.Forum;
 import com.linjw.myoa.model.PageBean;
 import com.linjw.myoa.model.Reply;
@@ -18,7 +18,7 @@ import com.opensymphony.xwork2.ActionContext;
 @Controller
 @Scope("prototype")
 @SuppressWarnings("serial")
-public class TopicAction extends BaseAction<Topic>{
+public class TopicAction extends ModelDrivenBaseAction<Topic>{
 	private Long forumId;
 	
 	

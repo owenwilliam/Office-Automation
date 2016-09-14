@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.linjw.myoa.base.BaseAction;
+import com.linjw.myoa.base.ModelDrivenBaseAction;
 import com.linjw.myoa.model.Privilege;
 import com.linjw.myoa.model.Station;
 import com.linjw.myoa.model.User;
@@ -18,7 +18,7 @@ import com.opensymphony.xwork2.ActionContext;
 @Controller
 @Scope("prototype")
 @SuppressWarnings("serial")
-public class StationAction extends BaseAction<Station>{
+public class StationAction extends ModelDrivenBaseAction<Station>{
 
   private Long[] privilegeIds;	
 	/** 列表显示*/

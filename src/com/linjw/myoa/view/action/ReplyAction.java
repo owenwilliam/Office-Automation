@@ -6,14 +6,14 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.linjw.myoa.base.BaseAction;
+import com.linjw.myoa.base.ModelDrivenBaseAction;
 import com.linjw.myoa.model.Reply;
 import com.linjw.myoa.model.Topic;
 import com.opensymphony.xwork2.ActionContext;
 @Controller
 @Scope("prototype")
 @SuppressWarnings("serial")
-public class ReplyAction extends BaseAction<Reply>{
+public class ReplyAction extends ModelDrivenBaseAction<Reply>{
 
 	private Long topicId;
 

@@ -53,6 +53,7 @@ public class User {
 	 * @param privUrl
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public boolean hasPrivilegeByUrl(String privUrl){
 		//超级管理员所有权限
 		if(isAdmin()){

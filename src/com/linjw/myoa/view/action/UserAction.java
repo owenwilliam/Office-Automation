@@ -7,7 +7,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.linjw.myoa.base.BaseAction;
+import com.linjw.myoa.base.ModelDrivenBaseAction;
 import com.linjw.myoa.model.Department;
 import com.linjw.myoa.model.Station;
 import com.linjw.myoa.model.User;
@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.ActionContext;
 @Controller
 @Scope("prototype")
 @SuppressWarnings("serial")
-public class UserAction extends BaseAction<User> {
+public class UserAction extends ModelDrivenBaseAction<User> {
 	private Long departmentId;
 	private Long[] stationIds;
 	private String md5Digest = DigestUtils.md5Hex("1234");//转化为32位的十六进制的数

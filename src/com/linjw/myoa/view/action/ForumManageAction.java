@@ -7,14 +7,14 @@ import java.util.List;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.linjw.myoa.base.BaseAction;
+import com.linjw.myoa.base.ModelDrivenBaseAction;
 import com.linjw.myoa.model.Forum;
 import com.opensymphony.xwork2.ActionContext;
 
 @Controller
 @Scope("prototype")
 @SuppressWarnings("serial")
-public class ForumManageAction extends BaseAction<Forum>{
+public class ForumManageAction extends ModelDrivenBaseAction<Forum>{
 	/** 列表显示*/
 	public String list() throws Exception{
 	 List<Forum> forumList = forumService.findAll();
