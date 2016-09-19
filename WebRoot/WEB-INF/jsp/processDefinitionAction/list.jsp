@@ -47,7 +47,7 @@
 			<tr class="TableDetail1 template">
 					<td>${name}&nbsp;</td>
 					<td align="CENTER">${version}&nbsp;</td>
-					<td>${description}&nbsp;</td>
+					<td>${processDefinition}&nbsp;</td>
 					<td><s:a action="processDefinition_delete" onClick="return delConfirm()" >删除
 					     <s:param name="key" value="%{@java.net.URLEncoder@encode(key,'utf-8')}"></s:param>
 					</s:a>

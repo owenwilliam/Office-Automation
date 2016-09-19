@@ -1,4 +1,8 @@
 package com.linjw.myoa.model;
+
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 审批流转：表单模板管理
  * @author 林剑文　2014-7-19
@@ -7,9 +11,12 @@ package com.linjw.myoa.model;
 public class ApplicationTemplate {
 
 	private Long id;
-	private String name;
+	private String name;//流程名称
 	private String processDefinition;//所用到的流程
 	private String path;//文件在服务器端存储的路径
+	private Set<Application> applications = new HashSet<Application>();
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -33,5 +40,11 @@ public class ApplicationTemplate {
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+	public Set<Application> getApplications() {
+		return applications;
+	}
+	public void setApplications(Set<Application> applications) {
+		this.applications = applications;
 	}
 }

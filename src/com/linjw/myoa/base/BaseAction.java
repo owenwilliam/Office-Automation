@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import org.apache.struts2.ServletActionContext;
 
 import com.linjw.myoa.model.User;
+import com.linjw.myoa.service.ApplicationService;
 import com.linjw.myoa.service.ApplicationTemplateService;
 import com.linjw.myoa.service.DepartmentService;
 import com.linjw.myoa.service.ForumService;
@@ -50,9 +51,10 @@ public abstract class BaseAction extends ActionSupport {
 	protected ReplyService replyService;
 	@Resource
 	protected ProcessDefinitionService processDefinitionService;
-	
 	@Resource
 	protected ApplicationTemplateService applicationTemplateService;
+	@Resource
+	protected ApplicationService applicationService;
 	
 	/**
 	 * 获取当前登录的用户
