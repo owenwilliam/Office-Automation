@@ -21,14 +21,14 @@ import com.linjw.myoa.service.ProcessDefinitionService;
 public class ProcessDefinitionServiceImpl implements ProcessDefinitionService {
 	   @Resource
        private ProcessEngine processEngine;
-	   /**列表*/
+	   /**列表，由jbpm来的*/
 	public List<ProcessDefinition> finAllLatestVersions() {
          //1.查询所有的流程定义列表，把最新的版本都排到最后面
 		List<ProcessDefinition> all = processEngine.getRepositoryService()//
 				.createProcessDefinitionQuery()//
-				.orderAsc(ProcessDefinitionQuery.PROPERTY_VERSION)//
+				.orderAsc(ProcessDefinitionQuery.PROPERTY_VERSION)//按版本排序
 				.list();
-		//2.过滤出所有的最新版本，使用map的方法，就是栈的理论
+		//2.过滤出所有的最新版本，使用map的方法，栈的理论，拿到最新的
 		Map<String,ProcessDefinition> map = new HashMap<String,ProcessDefinition>();
 		for(ProcessDefinition pd : all){
 			map.put(pd.getKey(),pd);

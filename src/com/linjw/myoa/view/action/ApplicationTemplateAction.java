@@ -90,6 +90,7 @@ public class ApplicationTemplateAction extends ModelDrivenBaseAction<Application
 	/** 下载 */
 	public String download() throws Exception {
 		//准备下载的资源
+		//System.out.println("id"+model.getId());
 		ApplicationTemplate applicationTemplate = applicationTemplateService.getById(model.getId());
 		inputStream = new FileInputStream(applicationTemplate.getPath());
 		//准备文件名（解决乱码问题）

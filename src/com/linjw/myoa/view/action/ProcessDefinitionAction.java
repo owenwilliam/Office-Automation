@@ -13,6 +13,11 @@ import org.springframework.stereotype.Controller;
 
 import com.linjw.myoa.base.BaseAction;
 import com.opensymphony.xwork2.ActionContext;
+/**
+ * 审批流程管理
+ * @author 林剑文　2014-7-20
+ *
+ */
 @Controller
 @Scope("prototype")
 @SuppressWarnings("serial")
@@ -54,7 +59,6 @@ public class ProcessDefinitionAction extends BaseAction{
 	 * 部署
 	 */
 	public String add() throws Exception {
-	//	System.out.println("-------upload"+upload);
 		ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(upload));
 		try{
 		  processDefinitionService.deploy(zipInputStream);

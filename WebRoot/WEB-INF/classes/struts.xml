@@ -52,8 +52,7 @@
 			<result name="list">/WEB-INF/jsp/stationAction/list.jsp</result>
 			<result name="addUI">/WEB-INF/jsp/stationAction/addUI.jsp</result>
 			<result name="editUI">/WEB-INF/jsp/stationAction/editUI.jsp</result>
-			<result name="setPrivilegeUI">/WEB-INF/jsp/stationAction/setPrivilegeUI.jsp
-			</result>
+			<result name="setPrivilegeUI">/WEB-INF/jsp/stationAction/setPrivilegeUI.jsp</result>
 			<result name="toList" type="redirectAction">station_list</result>
 
 		</action>
@@ -63,8 +62,7 @@
 			<result name="list">/WEB-INF/jsp/departmentAction/list.jsp</result>
 			<result name="addUI">/WEB-INF/jsp/departmentAction/addUI.jsp</result>
 			<result name="editUI">/WEB-INF/jsp/departmentAction/editUI.jsp</result>
-			<result name="toList" type="redirectAction">department_list?parentId=${parentId}
-			</result>
+			<result name="toList" type="redirectAction">department_list?parentId=${parentId}</result>
 		</action>
 
 		<!-- 用户管理 -->
@@ -88,8 +86,7 @@
 		<action name="forumManage_*" class="forumManageAction" method="{1}">
 			<result name="list">/WEB-INF/jsp/forumManageAction/list.jsp</result>
 			<result name="addUI">/WEB-INF/jsp/forumManageAction/addUI.jsp</result>
-			<result name="editUI">/WEB-INF/jsp/forumManageAction/editUI.jsp
-			</result>
+			<result name="editUI">/WEB-INF/jsp/forumManageAction/editUI.jsp</result>
 			<result name="toList" type="redirectAction">forumManage_list</result>
 		</action>
 
@@ -114,9 +111,10 @@
 			<result name="toTopicShow" type="redirectAction">topic_show?id=${topicId}
 			</result>
 		</action>
-	
-	     	<!-- 审批流转：审批流程管理 -->
-		<action name="processDefinition_*" class="processDefinitionAction" method="{1}">
+
+		<!-- 审批流转：审批流程管理 -->
+		<action name="processDefinition_*" class="processDefinitionAction"
+			method="{1}">
 			<result name="list">/WEB-INF/jsp/processDefinitionAction/list.jsp</result>
 			<result name="addUI">/WEB-INF/jsp/processDefinitionAction/addUI.jsp</result>
 			<result name="toList" type="redirectAction">processDefinition_list</result>
@@ -126,10 +124,11 @@
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
-		
-		
-	     	<!-- 审批流转：表单模板管理 -->
-		<action name="template_*" class="applicationTemplateAction" method="{1}">
+
+
+		<!-- 审批流转：表单模板管理 -->
+		<action name="template_*" class="applicationTemplateAction"
+			method="{1}">
 			<result name="list">/WEB-INF/jsp/applicationTemplateAction/list.jsp</result>
 			<result name="addUI">/WEB-INF/jsp/applicationTemplateAction/addUI.jsp</result>
 			<result name="editUI">/WEB-INF/jsp/applicationTemplateAction/editUI.jsp</result>
@@ -140,6 +139,23 @@
 				<param name="inputName">inputStream</param>
 				<param name="contentDisposition">attachment;filename="${#fileName}.doc"</param>
 			</result>
+		</action>
+
+
+
+		<!-- 审批流转：申请流转 -->
+		<action name="flow_*" class="flowAction" method="{1}">
+			<result name="applicationTemplateList">/WEB-INF/jsp/flowAction/applicationTemplateList.jsp</result>
+			<result name="submitUI">/WEB-INF/jsp/flowAction/submitUI.jsp</result>
+			<result name="myApplicationList">/WEB-INF/jsp/flowAction/myApplicationList.jsp</result>
+			<result name="toMyApplicationList" type="redirectAction">flow_myApplicationList</result>
+
+
+
+			<result name="myTaskList">/WEB-INF/jsp/flowAction/myTaskList.jsp</result>
+			<result name="approveUI">/WEB-INF/jsp/flowAction/approveUI.jsp</result>
+			<result name="approveHistory">/WEB-INF/jsp/flowAction/approveHistory.jsp</result>
+			<result name="toMyTaskList" type="redirectAction">flow_myTaskList</result>
 		</action>
 	</package>
 
