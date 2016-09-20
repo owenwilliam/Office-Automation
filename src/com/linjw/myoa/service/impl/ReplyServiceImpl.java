@@ -39,6 +39,7 @@ public class ReplyServiceImpl extends DaoSupportImpl<Reply> implements ReplyServ
 		getSession().update(forum);
 	}
 	
+
 	/**
 	 * 分页显示回复帖子
 	 * @param pageNum
@@ -66,6 +67,10 @@ public class ReplyServiceImpl extends DaoSupportImpl<Reply> implements ReplyServ
 
 		return new PageBean(pageNum, pageSize, count.intValue(), list);//将值传回给PageBean
 	}
+
+	
+
+	
 
 	
 }
