@@ -101,6 +101,9 @@
 		<action name="topic_*" class="topicAction" method="{1}">
 			<result name="addUI">/WEB-INF/jsp/topicAction/addUI.jsp</result>
 			<result name="show">/WEB-INF/jsp/topicAction/show.jsp</result>
+			<result name="editUI">/WEB-INF/jsp/topicAction/editUI.jsp</result>
+			<result name="moveUI">/WEB-INF/jsp/topicAction/moveUI.jsp</result>
+			<result name="delete" type="redirectAction">forum_show?id=${forumId}</result>
 			<result name="toShow" type="redirectAction">topic_show?id=${id}</result>
 		</action>
 
@@ -108,6 +111,7 @@
 		<!-- 论坛：回复相关功能 -->
 		<action name="reply_*" class="replyAction" method="{1}">
 			<result name="addUI">/WEB-INF/jsp/replyAction/addUI.jsp</result>
+			<result name="editUI">/WEB-INF/jsp/replyAction/editUI.jsp</result>
 			<result name="toTopicShow" type="redirectAction">topic_show?id=${topicId}
 			</result>
 		</action>

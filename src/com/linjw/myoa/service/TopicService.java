@@ -20,4 +20,9 @@ public interface TopicService extends DaoSupport<Topic>{
 */
 	@Deprecated
 	PageBean getPageBeanByForum(int pageNum, int pageSize, Forum forum);
+/**
+ * 删除帖子
+ * @param topic
+ */
+	public void delete(Topic topic);
 }

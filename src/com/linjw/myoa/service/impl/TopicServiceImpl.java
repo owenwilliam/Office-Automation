@@ -36,6 +36,18 @@ public class TopicServiceImpl extends DaoSupportImpl<Topic> implements TopicServ
 	   forum.setLastTopic(topic); // 最后发表的主题
 	   getSession().update(forum);
 	}
+	
+	public void delete(Topic topic) {
+		//1.维护相关属性
+		
+		Forum forum = topic.getForum();
+		forum.setTopicCount(forum.getTopicCount()-1);
+	forum.setArticleCount(forum.getArticleCount()-topic.getReplyCount()-1);
+		getSession().delete(topic);
+	}
+
+	
+	
 	@SuppressWarnings("rawtypes")
 	@Deprecated
 	public PageBean getPageBeanByForum(int pageNum, int pageSize, Forum forum) {
@@ -56,6 +68,11 @@ public class TopicServiceImpl extends DaoSupportImpl<Topic> implements TopicServ
 
 		return new PageBean(pageNum, pageSize, count.intValue(), list);
 	}
+
+
+
+	
+	
 	
 
 }

@@ -109,6 +109,7 @@ public class FlowAction extends BaseAction{
 		approveInfo.setApplication(applicationService.getById(applicationId));
 		
 		approveInfo.setApprover(getCurrentUser());
+	//	approveInfo.setApprover(userService.getById(getCurrentUser().getId()));
 		approveInfo.setApproveTime(new Date());
 		//调用业务方法（保存本次审批信息，并办理完任务，并维护申请状态）
 		applicationService.approve(approveInfo,taskId,outcome);

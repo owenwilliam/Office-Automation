@@ -24,5 +24,26 @@
        <key column="userId"></key>
       <many-to-many class="Station" column="stationId"></many-to-many>
      </set> 
+     
+     <!-- topics属性，本类与Topic的一对多 -->
+     <set name="topics" cascade="delete">
+       <key column="authorId"></key>
+       <one-to-many class="Topic"/>
+     </set>
+     <!-- replies属性，本类与Reply的一对多 -->
+      <set name="replies" cascade="delete">
+       <key column="authorId"></key>
+       <one-to-many class="Reply"/>
+     </set>
+      <!-- applications属性，本类与Application的一对多 -->
+       <set name="applications" cascade="delete">
+       <key column="applicantId"></key>
+       <one-to-many class="Application"/>
+     </set>
+     <!-- approveInfos属性，本类与ApproveInfo的一对多 -->
+      <set name="approveInfos" cascade="delete">
+       <key column="approverId"></key>
+       <one-to-many class="ApproveInfo"/>
+     </set>
   </class>
 </hibernate-mapping>
