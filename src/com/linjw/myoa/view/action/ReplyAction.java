@@ -43,17 +43,16 @@ public class ReplyAction extends ModelDrivenBaseAction<Reply>{
 		replyService.save(model);
 		return "toTopicShow";// 转到新回复所在主题的显示页面
 	}
-	public String editUI() throws Exception{
-		Reply reply = replyService.getById(model.getId());
-		ActionContext.getContext().getValueStack().push(reply);
-		return "editUI";
+	/**
+	 * 删除回复
+	 * @return
+	 */
+	public String delete()throws Exception{
+		System.out.println("model.getId()"+model.getId()); 
+		replyService.delete(model.getId());
+		return "delete";
 	}
-	public String edit()throws Exception{
-		Reply reply = replyService.getById(model.getId());
-		reply.setContent(model.getContent());
-		replyService.update(reply);
-		return "toTopicShow";
-	}
+	//---
 	public Long getTopicId() {
 		return topicId;
 	}

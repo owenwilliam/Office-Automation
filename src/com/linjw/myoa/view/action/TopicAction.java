@@ -20,7 +20,7 @@ import com.opensymphony.xwork2.ActionContext;
 @SuppressWarnings("serial")
 public class TopicAction extends ModelDrivenBaseAction<Topic>{
 	private Long forumId;
-
+	
 	
 	/**
 	 * 显示单个主题（主帖+回帖列表）
@@ -77,97 +77,7 @@ public class TopicAction extends ModelDrivenBaseAction<Topic>{
 		topicService.save(model);
 		return "toShow";// 转到新主题的显示页面
 	}
-	/**
-	 * 删除主帖子
-	 * @return
-	 */
-	public String delete()throws Exception{
-	
-	//	topicService.delete(model.getId());
-		Topic topic = topicService.getById(model.getId());
-		topicService.delete(topic);
-		return "delete";
-	} 
-	/**
-	 *修改主题帖子
-	 */
-	public String editUI()throws Exception{
-		Topic topic = topicService.getById(model.getId());
-		ActionContext.getContext().getValueStack().push(topic);
-		return "editUI";
-	}
-	/**
-	 * 修改
-	 */
-	public String edit() throws Exception{
-		Topic topic = topicService.getById(model.getId());
-		topic.setTitle(model.getTitle());
-		topic.setContent(model.getContent());
-		topicService.update(topic);
-		return "toShow";
-	}
-	/**
-	 * 设置精华帖子
-	 * @return
-	 * @throws Exception
-	 */
-	
-	public String best()throws Exception{
-		Topic topic = new Topic();
-		Topic topic_best = topicService.getById(model.getId());
-		topic_best.setType(topic.TYPE_BEST);
-		topicService.update(topic_best); 
-		return "toShow";
-	}
-	/**
-	 * 设置置顶帖子
-	 * @return
-	 */
-	public String top()throws Exception{
-		Topic topic = new Topic();
-		Topic topic_best = topicService.getById(model.getId());
-		topic_best.setType(topic.TYPE_TOP);
-		topicService.update(topic_best); 
-		return "toShow";
-	}
-	/**
-	 * 设置普通帖子
-	 * @return
-	 */
-	public String normal()throws Exception{
-		Topic topic = new Topic();
-		Topic topic_best = topicService.getById(model.getId());
-		topic_best.setType(topic.TYPE_NORMAL);
-		topicService.update(topic_best); 
-		return "toShow";
-	}
-	/**
-	 * 移动到其它板块
-	 * @return
-	 */
-	public String moveUI() throws Exception{
-		Topic topic = topicService.getById(model.getId());
-		ActionContext.getContext().getValueStack().push(topic);
-		
-		List<Forum> forumList = forumService.findAll();
-		ActionContext.getContext().put("forumList",forumList);
-		System.out.println("---------------------------进入UI界面");
-		return "moveUI";
-	}
-	
-	/**
-	 * 移动
-	 * @return
-	 */
-	public String move() throws Exception{
-		System.out.println("------------------------------打印id:" );
-		System.out.println("-------------------------------打印：forumId");
-		Topic topic = topicService.getById(model.getId());
-		topic.setForum(forumService.getById(forumId)); 
-		topicService.update(topic);
-		return "toShow";
-	}
-	//--- 
+	//---
 public Long getForumId() {
 	return forumId;
 }

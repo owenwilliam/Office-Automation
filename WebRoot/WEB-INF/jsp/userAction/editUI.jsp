@@ -78,7 +78,7 @@
 						<td width="100">岗位</td>
                         <td>	<s:select name="stationIds" cssClass="SelectStyle"
                         		multiple="true" size="10" 
-                        		list="#stationList" listKey="id" listValue="name" 
+                        		list="#stationList" listKey="id" listValue="name"
                         	/>
                             按住Ctrl键可以多选或取消选择
                         </td>
