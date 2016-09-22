@@ -25,7 +25,9 @@ public class Topic extends Article{
     private int replyCount;//回复数量
     private Reply lastReply;//最后回复
     private Date lastUpdateTime;//最后更新时间（主题发表时间或最后回复时间）
-	public Forum getForum() {
+	private Forum topicToForum;
+	
+    public Forum getForum() {
 		return forum;
 	}
 	public void setForum(Forum forum) {
@@ -60,5 +62,11 @@ public class Topic extends Article{
 	}
 	public void setLastUpdateTime(Date lastUpdateTime) {
 		this.lastUpdateTime = lastUpdateTime;
+	}
+	public Forum getTopicToForum() {
+		return topicToForum;
+	}
+	public void setTopicToForum(Forum topicToForum) {
+		this.topicToForum = topicToForum;
 	}
 }

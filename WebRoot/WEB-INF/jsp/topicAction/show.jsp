@@ -14,6 +14,7 @@
 			fck.BasePath = "${pageContext.request.contextPath}/fckeditor/";
 			fck.ReplaceTextarea();
 		});
+		
     </script>
 </head>
 <body>
@@ -54,10 +55,10 @@
 					<td class="ForumPageTableTitle"><b>本帖主题：新手发帖</b></td>
 					<td class="ForumPageTableTitle" align="right" style="padding-right:12px;">
 						<s:a class="detail" action="reply_addUI?topicId=%{#topic.id}"><img border="0" src="${pageContext.request.contextPath}/style/images/reply.gif" />回复</s:a>
-						<a href="moveUI.html"><img border="0" src="${pageContext.request.contextPath}/style/images/edit.gif" />移动到其他版块</a>
-						<a href="#" onClick="return confirm('要把本主题设为精华吗？')"><img border="0" src="${pageContext.request.contextPath}/style/images/topicType_1.gif" />精华</a>
-						<a href="#" onClick="return confirm('要把本主题设为置顶吗？')"><img border="0" src="${pageContext.request.contextPath}/style/images/topicType_2.gif" />置顶</a>
-						<a href="#" onClick="return confirm('要把本主题设为普通吗？')"><img border="0" src="${pageContext.request.contextPath}/style/images/topicType_0.gif" />普通</a>
+						<s:a action="topic_moveUI?id=%{id}"><img border="0" src="${pageContext.request.contextPath}/style/images/edit.gif" />移动到其他版块</s:a>
+						<s:a action="topic_best?id=%{id}" onClick="return confirm('要把本主题设为精华吗？')"><img border="0" src="${pageContext.request.contextPath}/style/images/topicType_1.gif" />精华</s:a>
+						<s:a action="topic_top?id=%{id}" onClick="return confirm('要把本主题设为置顶吗？')"><img border="0" src="${pageContext.request.contextPath}/style/images/topicType_2.gif" />置顶</s:a>
+						<s:a action="topic_normal?id=%{id}" onClick="return confirm('要把本主题设为普通吗？')"><img border="0" src="${pageContext.request.contextPath}/style/images/topicType_0.gif" />普通</s:a>
 					</td>
 					<td width="3" class="ForumPageTableTitleRight">&nbsp;</td>
 				</tr>
@@ -73,8 +74,14 @@
 						<td rowspan="3" width="130" class="PhotoArea" align="center" valign="top">
 							<!--作者头像-->
 							<div class="AuthorPhoto">
+								
+								<s:if test="#topic.author.img_path ==null">
 								<img border="0" width="110" height="110" src="${pageContext.request.contextPath}/style/images/defaultAvatar.gif" 
 									onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/style/images/defaultAvatar.gif';" />
+							</s:if>
+						   <s:else>
+							<img src="${topic.author.img_path }" height="110" width="110">
+							</s:else>
 							</div>
 							<!--作者名称-->
 							<div class="AuthorName">${topic.author.name}</div>
@@ -83,8 +90,8 @@
 							<ul class="TopicFunc">
 								<!--操作列表-->
 								<li class="TopicFuncLi">
-									<a class="detail" href="${pageContext.request.contextPath}/BBS_Topic/saveUI.html"><img border="0" src="${pageContext.request.contextPath}/style/images/edit.gif" />编辑</a>
-									<s:a action="reply_delete?id=%{id}" class="detail" onClick="return confirm('确定要删除本帖吗？')"><img border="0" src="${pageContext.request.contextPath}/style/images/delete.gif" />删除</s:a>
+									<s:a action="topic_editUI?id=%{id}" class="detail" ><img border="0" src="${pageContext.request.contextPath}/style/images/edit.gif" />编辑</s:a>
+									<s:a action="topic_delete?id=%{id}&forumId=%{#topic.forum.id}" class="detail" onClick="return confirm('确定要删除本帖吗？')"><img border="0" src="${pageContext.request.contextPath}/style/images/delete.gif" />删除</s:a>
 								</li>
 								<!-- 文章标题 -->
 								<li class="TopicSubject">
@@ -125,8 +132,13 @@
 						<td rowspan="3" width="130" class="PhotoArea" align="center" valign="top">
 							<!--作者头像-->
 							<div class="AuthorPhoto">
+							<s:if test="#this.author.img_path ==null">
 								<img border="0" width="110" height="110" src="${pageContext.request.contextPath}/style/images/defaultAvatar.gif" 
 									onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/style/images/defaultAvatar.gif';" />
+							</s:if>
+							<s:else>
+							<img src="${author.img_path }" height="110" width="110">
+							</s:else>
 							</div>
 							<!--作者名称-->
 							<div class="AuthorName">${author.name}</div>
@@ -135,9 +147,9 @@
 							<ul class="TopicFunc">
 								<!--操作列表-->
 								<li class="TopicFuncLi">
-									<a class="detail" href="${pageContext.request.contextPath}/BBS_Topic/saveUI.html"><img border="0" src="${pageContext.request.contextPath}/style/images/edit.gif" />编辑</a>
-									<s:a action="reply_delete?id=%{id}" class="detail" onClick="return confirm('确定要删除本帖吗？')"><img border="0" src="${pageContext.request.contextPath}/style/images/delete.gif" />删除</s:a>
-								</li>
+									<s:a action="reply_editUI?id=%{id}&topicId=%{topic.id}" class="detail" ><img border="0" src="${pageContext.request.contextPath}/style/images/edit.gif" />编辑</s:a><%--
+									<s:a action="reply_delete?id=%{id}&topicId=%{topic.id}" class="detail" onClick="return confirm('确定要删除本帖吗？')"><img border="0" src="${pageContext.request.contextPath}/style/images/delete.gif" />删除</s:a>
+								--%></li>
 								<!-- 文章标题 -->
 								<li class="TopicSubject">
 									${title}

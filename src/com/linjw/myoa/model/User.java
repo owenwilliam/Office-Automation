@@ -22,10 +22,16 @@ public class User {
 	private String phoneNumber;//电话
 	private String email;//邮箱
 	private String description;//说明
+    private String img_path;//用户头像
 	
 	//关联
 	private Department department;
 	private Set<Station> stations = new HashSet<Station>();
+	
+	private Set<Topic> topics = new HashSet<Topic>();
+	private Set<Reply> replies = new HashSet<Reply>();
+	private Set<Application> applications = new HashSet<Application>();
+	private Set<ApproveInfo> approveInfos = new HashSet<ApproveInfo>();
 
 	/**
 	 * 判断本用户是否指定名称的权限
@@ -152,6 +158,46 @@ public class User {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Set<Topic> getTopics() {
+		return topics;
+	}
+
+	public void setTopics(Set<Topic> topics) {
+		this.topics = topics;
+	}
+
+	public Set<Reply> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(Set<Reply> replies) {
+		this.replies = replies;
+	}
+
+	public Set<Application> getApplications() {
+		return applications;
+	}
+
+	public void setApplications(Set<Application> applications) {
+		this.applications = applications;
+	}
+
+	public Set<ApproveInfo> getApproveInfos() {
+		return approveInfos;
+	}
+
+	public void setApproveInfos(Set<ApproveInfo> approveInfos) {
+		this.approveInfos = approveInfos;
+	}
+
+	public String getImg_path() {
+		return img_path;
+	}
+
+	public void setImg_path(String img_path) {
+		this.img_path = img_path;
 	}
 
 	

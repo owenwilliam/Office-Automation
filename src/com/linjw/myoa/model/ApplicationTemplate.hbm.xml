@@ -11,9 +11,9 @@
     <property name="path"/>
     
     <!-- applications属性，本类与Application的一对多 -->
-    <set name="applications" cascade="delete">
+    <set name="applications">
       <key column="ApplicationTemplateId"></key>
-      <one-to-many class="Application" />
+      <one-to-many class="Application"/>
     </set>
  
   </class>
