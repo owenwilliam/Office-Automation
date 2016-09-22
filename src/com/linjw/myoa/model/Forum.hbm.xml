@@ -13,14 +13,15 @@
       <property name="topicCount"/>
       
       <!-- topics属性，本类与Topic的一对多 -->
-      <set name="topics" cascade="delete">
+      <set name="topics" cascade="delete" lazy="false">
       	<key column="forumId"></key>
       	<one-to-many class="Topic"/>
       </set>
       <!-- lastTopic属性，本类与Topic的一对一。
-			采用基于外键的一对一映射方式，本方有外键。 -->
-		<many-to-one name="lastTopic" class="Topic" column="lastTopicId" unique="true"></many-to-one>
- 
- 
+			采用基于外键的一对一映射方式，本方无外键。 -->
+<!-- 		<many-to-one name="lastTopic" class="Topic" column="lastTopicId" unique="true"></many-to-one>
+ --> 
+
+          <one-to-one name="lastTopic" property-ref="topicToForum" cascade="delete" ></one-to-one> 
   </class>
 </hibernate-mapping>

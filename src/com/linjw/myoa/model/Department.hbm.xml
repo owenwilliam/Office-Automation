@@ -10,9 +10,9 @@
     <property name="description"/>
     
     <!-- users属性，本类与User的一对多 -->
-    <set name="users" cascade="delete">
+    <set name="users">
       <key column="departmentId"></key>
-      <one-to-many class="User" />
+      <one-to-many class="User"/>
     </set>
     <!-- parent属性，本类与Department(上级)的多对一 -->
     <many-to-one name="parent" class="Department" column="parentId"></many-to-one>

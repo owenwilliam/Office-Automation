@@ -31,19 +31,24 @@
 			</div>
 			<div id="Head1Right_UserDept"></div>
 			<div id="Head1Right_UserSetup">
-            	<a href="javascript:void(0)"><img border="0" width="13" height="14" src="${pageContext.request.contextPath}/style/images/top/user_setup.gif" /> 个人设置</a>
+            	<a href="person_userInfoUI.action" target="right"><img border="0" width="13" height="14" src="${pageContext.request.contextPath}/style/images/top/user_setup.gif" /> 个人设置</a>
 			</div>
 			<div id="Head1Right_Time">
 				</div>
 		</div>
+		
         <div id="Head1Right_SystemButton">
             <a href="${pageContext.request.contextPath}/user_logout.action" target="_parent">
                 <img width="78" height="20" alt="退出系统" src="${pageContext.request.contextPath}/style/blue/images/top/logout.gif" />
             </a>
+      
         </div>
         <div id="Head1Right_Button">
             <a target="desktop" href="javascript:void(0)"><img width="65" height="20" alt="显示桌面" src="${pageContext.request.contextPath}/style/blue/images/top/desktop.gif" /></a>
+         
         </div>
+        
+       
 	</div>
     
     <div id="Head2">
@@ -62,16 +67,22 @@
                 </li>
                 <li class="Line"></li>
                 
-                <!-- 是否有待审批文档的提示2 -->
-                <li id="messageArea"></li>
+                <!-- 是否有待审批文档的提示2，提示审批 -->
+                <li id="messageArea">您有 1 个待审批文档，请及时审批！★★★★★</li>
             </ul>
         </div>
-        
-        <div id="Head2_FunctionList" style="text-align: left">
-        	<a href="javascript: window.parent.right.location.reload(true);">刷新</a>
+         <div id="Head2_FunctionList" style="text-align: left">
+        	<a href="javascript: window.parent.right.location.reload(true);"><img width="18" height="18" src="${pageContext.request.contextPath}/style/blue/images/top/reload.gif" alt="刷新">刷新</a>
         </div>
+		<div id="Head2_FunctionList">
+			<marquee style="WIDTH: 100%;" onMouseOver="this.stop()" onMouseOut="this.start()" 
+				scrollamount=1 scrolldelay=30 direction=left>
+				<b>这是滚动的消息</b>
+			</marquee>
+		</div>
+       
     </div>
-
+ 
 </body>
 
 </html>

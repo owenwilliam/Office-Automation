@@ -91,7 +91,14 @@ public class Installer {
 		session.save(menu3);
 		session.save(menu4);
 		session.save(menu5);
-		
+		//------------------------------------------------------------------------------
+		//个人设置
+		menu = new Privilege("个人设置",null,null);
+		menu1 = new Privilege("个人信息","/person_userInfoUI",menu);
+		menu2 = new Privilege("密码修改","/person_editPasswordUI",menu);
+		session.save(menu);
+		session.save(menu1);
+		session.save(menu2);
 
     }
 	

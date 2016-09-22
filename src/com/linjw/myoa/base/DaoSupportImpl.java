@@ -130,7 +130,7 @@ public abstract class DaoSupportImpl<T> implements DaoSupport<T> {
 		
 		// 公共的查询分页信息的方法（最终版）
 		public PageBean getPageBean(int pageNum, int pageSize, QueryHelper queryHelper) {
-			System.out.println("-------> DaoSupportImpl.getPageBean( int pageNum, int pageSize, QueryHelper queryHelper )");
+		//	System.out.println("-------> DaoSupportImpl.getPageBean( int pageNum, int pageSize, QueryHelper queryHelper )");
 
 			// 参数列表
 			List<Object> parameters = queryHelper.getParameters();

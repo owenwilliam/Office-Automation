@@ -76,6 +76,14 @@
 			<result name="logout">/WEB-INF/jsp/userAction/logout.jsp</result>
 			<result name="toIndex" type="redirect">/index.jsp</result>
 		</action>
+		<!-- 个人设置 -->
+		<action name="person_*" class="userAction" method="{1}">
+			<result name="userInfoUI">/WEB-INF/jsp/userAction/userInfoUI.jsp</result>
+			<result name="editPasswordUI">/WEB-INF/jsp/userAction/editPasswordUI.jsp</result>
+			<result name="toUserInfoUI" type="redirectAction">person_userInfoUI</result>
+		</action>
+		
+		
 		<!-- 首页 -->
 		<action name="home_*" class="homeAction" method="{1}">
 			<result name="{1}">/WEB-INF/jsp/homeAction/{1}.jsp</result>
@@ -101,6 +109,9 @@
 		<action name="topic_*" class="topicAction" method="{1}">
 			<result name="addUI">/WEB-INF/jsp/topicAction/addUI.jsp</result>
 			<result name="show">/WEB-INF/jsp/topicAction/show.jsp</result>
+			<result name="editUI">/WEB-INF/jsp/topicAction/editUI.jsp</result>
+			<result name="moveUI">/WEB-INF/jsp/topicAction/moveUI.jsp</result>
+			<result name="delete" type="redirectAction">forum_show?id=${forumId}</result>
 			<result name="toShow" type="redirectAction">topic_show?id=${id}</result>
 		</action>
 
@@ -108,9 +119,9 @@
 		<!-- 论坛：回复相关功能 -->
 		<action name="reply_*" class="replyAction" method="{1}">
 			<result name="addUI">/WEB-INF/jsp/replyAction/addUI.jsp</result>
+			<result name="editUI">/WEB-INF/jsp/replyAction/editUI.jsp</result>
 			<result name="toTopicShow" type="redirectAction">topic_show?id=${topicId}
 			</result>
-			<result name="delete">/WEB-INF/jsp/forumAction/show.jsp</result>
 		</action>
 
 		<!-- 审批流转：审批流程管理 -->
