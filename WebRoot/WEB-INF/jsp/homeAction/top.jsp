@@ -54,21 +54,23 @@
     <div id="Head2">
         <div id="Head2_Awoke">
             <ul id="AwokeNum">
-                <li><a target="desktop" href="javascript:void(0)"><img border="0" width="11" height="13" src="${pageContext.request.contextPath}/style/images/top/msg.gif" /> 消息<span id="msg"></span></a></li>
+                <%--<li><a target="desktop" href="javascript:void(0)"><img border="0" width="11" height="13" src="${pageContext.request.contextPath}/style/images/top/msg.gif" /> 消息<span id="msg"></span></a></li>
                 <li class="Line"></li>
                 <li><a target="desktop" href="javascript:void(0)"><img border="0" width="16" height="11" src="${pageContext.request.contextPath}/style/images/top/mail.gif" /> 邮件<span id="mail"></span></a></li>
                 <li class="Line"></li>
                 
-                <!-- 是否有待审批文档的提示1 -->
+                --%><!-- 是否有待审批文档的提示1 -->
                 <li><a href="${pageContext.request.contextPath}/formFlowAction_myTaskList.action" target="right">
                 		<img border="0" width="12" height="14" src="${pageContext.request.contextPath}/style/images/top/wait.gif" /> 
-                		待办事项（<span id="wait" class="taskListSize">0</span>）
+                		待办事项（<span id="wait" class="taskListSize">${count}</span>）
                 	</a>
                 </li>
                 <li class="Line"></li>
                 
                 <!-- 是否有待审批文档的提示2，提示审批 -->
-                <li id="messageArea">您有 1 个待审批文档，请及时审批！★★★★★</li>
+                <s:if test="#count>0">
+                <li id="messageArea">您有 ${count}个待审批文档，请及时审批！★★★★★</li>
+                </s:if>
             </ul>
         </div>
          <div id="Head2_FunctionList" style="text-align: left">
@@ -77,7 +79,11 @@
 		<div id="Head2_FunctionList">
 			<marquee style="WIDTH: 100%;" onMouseOver="this.stop()" onMouseOut="this.start()" 
 				scrollamount=1 scrolldelay=30 direction=left>
-				<b>这是滚动的消息</b>
+				<b>
+				<s:iterator value="#noticeInfos">
+				${content}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</s:iterator>
+				</b>
 			</marquee>
 		</div>
        

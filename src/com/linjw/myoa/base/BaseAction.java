@@ -16,6 +16,7 @@ import com.linjw.myoa.service.ApplicationService;
 import com.linjw.myoa.service.ApplicationTemplateService;
 import com.linjw.myoa.service.DepartmentService;
 import com.linjw.myoa.service.ForumService;
+import com.linjw.myoa.service.NoticeInfoService;
 import com.linjw.myoa.service.PrivilegeService;
 import com.linjw.myoa.service.ProcessDefinitionService;
 import com.linjw.myoa.service.ReplyService;
@@ -55,6 +56,8 @@ public abstract class BaseAction extends ActionSupport {
 	protected ApplicationTemplateService applicationTemplateService;
 	@Resource
 	protected ApplicationService applicationService;
+	@Resource
+	protected NoticeInfoService noticeInfoService;
 	
 	/**
 	 * 获取当前登录的用户

@@ -71,7 +71,8 @@
 			<result name="addUI">/WEB-INF/jsp/userAction/addUI.jsp</result>
 			<result name="editUI">/WEB-INF/jsp/userAction/editUI.jsp</result>
 			<result name="toList" type="redirectAction">user_list</result>
-
+			<result name="toaddUI" type="redirectAction">user_addUI2</result>
+			
 			<result name="loginUI">/WEB-INF/jsp/userAction/loginUI.jsp</result>
 			<result name="logout">/WEB-INF/jsp/userAction/logout.jsp</result>
 			<result name="toIndex" type="redirect">/index.jsp</result>
@@ -168,6 +169,15 @@
 			<result name="approveUI">/WEB-INF/jsp/flowAction/approveUI.jsp</result>
 			<result name="approveHistory">/WEB-INF/jsp/flowAction/approveHistory.jsp</result>
 			<result name="toMyTaskList" type="redirectAction">flow_myTaskList</result>
+		</action>
+		
+		
+			<!-- 信息公告 -->
+		<action name="noticeinfo_*" class="noticeInfoAction" method="{1}">
+		      <result name="list">/WEB-INF/jsp/noticeInfoAction/list.jsp</result> 
+			<result name="addUI">/WEB-INF/jsp/noticeInfoAction/addUI.jsp</result>
+			<result name="editUI">/WEB-INF/jsp/noticeInfoAction/editUI.jsp</result>
+			<result name="toList" type="redirectAction">noticeinfo_list</result>
 		</action>
 	</package>
 

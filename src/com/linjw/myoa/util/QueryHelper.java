@@ -48,6 +48,7 @@ public class QueryHelper {
 		}
 		return this;
 	}
+	
 	/**
 	 * 如果第一个参数为true，则拼接Where子句
 	 * @param append

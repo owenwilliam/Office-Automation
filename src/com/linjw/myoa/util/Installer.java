@@ -99,6 +99,13 @@ public class Installer {
 		session.save(menu);
 		session.save(menu1);
 		session.save(menu2);
+		//信息公告
+		menu = new Privilege("信息公告",null,null);
+		menu1 = new Privilege("信息","//noticeinfo_list",menu);
+		menu2 = new Privilege("发布信息","/noticeinfo_addUI",menu);
+		session.save(menu);
+		session.save(menu1);
+		session.save(menu2);
 
     }
 	

@@ -14,6 +14,7 @@
     <property name="email"/>
     <property name="description"/>
     <property name="img_path"/>
+    <property name="user_path"/>
     
     <!-- department属性，本类与Department的多对一 -->
     <many-to-one name="department" class="Department" column="departmentId"></many-to-one>
@@ -44,6 +45,12 @@
       <set name="approveInfos" cascade="delete">
        <key column="approverId"></key>
        <one-to-many class="ApproveInfo"/>
+     </set>
+     
+     <!-- noticeInfos属性，本类与NoticeInfo的一对多 -->
+     <set name="noticeInfos" cascade="delete">
+        <key column="noticeInfoId"></key>
+        <one-to-many class="NoticeInfo"/>
      </set>
   </class>
 </hibernate-mapping>

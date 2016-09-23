@@ -1,17 +1,18 @@
 package com.linjw.myoa.view.action;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.linjw.myoa.base.ModelDrivenBaseAction;
 import com.linjw.myoa.model.Department;
+import com.linjw.myoa.model.NoticeInfo;
 import com.linjw.myoa.model.Station;
 import com.linjw.myoa.model.User;
 import com.linjw.myoa.util.DepartmentUtils;
@@ -32,16 +33,38 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 	private String newPassword;
 	private String newPassword2;
 	
+	//查询变量
+	private Long stationId;
+	private String userName;
+	
 	private File upload;//头像
 	private InputStream inputStream;//下载用的
+
 	/**
 	 * 列表
 	 */
    public String list() throws Exception{
 	  /* List<User> userList = userService.findAll();
 	   ActionContext.getContext().put("userList",userList);*/
+	   
+	   //回显示数据
+	   
+	   //>>部门
+	   List<Department> departments = departmentService.findAll();
+	   ActionContext.getContext().put("departments", departments);
+	   //>>岗位
+	   List<Station> stations =  stationService.findAll();
+	   ActionContext.getContext().put("stations",stations);
+	   //查询对象
+	   Department department = departmentService.getById(departmentId);
+	 /*  Station station = stationService.getById(stationId);*/
+	   List<Station> stationList = stationService.getByIds(stationIds);
 		// 准备分页信息
-		new QueryHelper(User.class, "u").preparePageBean(userService, pageNum, pageSize);
+		new QueryHelper(User.class, "u")
+		     .addCondition(departmentId !=null,"u.department=?",department)
+		     .addCondition(stationIds !=null,"u.stations in ",stationList)
+		     .addCondition(StringUtils.isNotBlank(userName),"u.name=?", userName)
+		     .preparePageBean(userService, pageNum, pageSize);
 	   return "list";
    }
 	
@@ -67,9 +90,30 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 		return "addUI";
 	}
 	/**
+	 * 添加页面2----这个方法不好　　有待解决
+	 */
+	public String addUI2() throws Exception{
+		//准备回显数据，departmentList
+		List<Department> topList = departmentService.findToList();
+		List<Department> departmentList = DepartmentUtils.getAllDepartments(topList);
+		ActionContext.getContext().put("departmentList",departmentList);
+		
+		//准备回显数据，stationList
+		List<Station> stationList = stationService.findAll();
+		ActionContext.getContext().put("stationList",stationList);
+		addFieldError("aad","登录名已存在！");
+		return "addUI";
+	}
+	/**
 	 * 添加
 	 */
 	public String add() throws Exception{
+		User user = userService.findByUserLoginName(model.getLoginName());
+		if(user != null){
+			
+			 return "toaddUI"; 
+			
+		}else{
 		//封装到对象中（当model是实体类型时，也可以使用model,但要设置未封装的属性）
 		//>>设置所属部门
 		model.setDepartment(departmentService.getById(departmentId));
@@ -78,12 +122,16 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 		model.setStations(new HashSet<Station>(stationList));
 		//>>设置默认密码为1234（使用MD5摘要）
 		model.setPassword(md5Digest);
-	
-		//保存到数据库
+		//>>创建文件来夹用来放图片
+		if(upload != null){//如果upload不为空
+		String path = saveUploadFile(upload);
+		model.setUser_path(path); 
+		}
+		//保存到数据库  
 		userService.save(model);
 	    return "toList";
+		}
 	}
-	
 	/**
 	 * 修改页面
 	 */
@@ -125,7 +173,7 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 		//1,从数据库中取出原对象
 		User user = userService.getById(model.getId());
 		//2，设置要修改的属性
-		user.setLoginName(model.getLoginName());
+		//user.setLoginName(model.getLoginName());
 		user.setName(model.getName());
 		user.setGender(model.getGender());
 		user.setPhoneNumber(model.getPhoneNumber());
@@ -136,7 +184,11 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 		//>>设置所属岗位
 		List<Station> stationList = stationService.getByIds(stationIds);
 		user.setStations(new HashSet<Station>(stationList));
-		
+		//>>创建文件来夹用来放图片
+		if(upload != null){//如果upload不为空
+		String path = saveUploadFile(upload);
+		user.setUser_path(path); 
+		}
 		//>>更新到数据库
 		userService.update(user);
 		return "toList";
@@ -226,7 +278,6 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 		   return "editPasswordUI";
 		}
 	}
-	
 	/**
 	 * 登录页面
 	 * @return
@@ -246,6 +297,7 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 		}else{
 			//登录用户
 			ActionContext.getContext().getSession().put("user",user);
+			
 			return "toIndex";
 		}
 	}
@@ -301,6 +353,7 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 	}
 
 	public File getUpload() {
+		System.out.println("------------------upload:"+upload);
 		return upload;
 	}
 
@@ -316,6 +369,20 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 		this.inputStream = inputStream;
 	}
 
+	public Long getStationId() {
+		return stationId;
+	}
 
-	
+	public void setStationId(Long stationId) {
+		this.stationId = stationId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 }

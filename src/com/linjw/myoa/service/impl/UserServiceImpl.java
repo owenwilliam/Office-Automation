@@ -18,5 +18,12 @@ public class UserServiceImpl extends DaoSupportImpl<User> implements UserService
 				.setParameter(1, md5Digest)//
 				.uniqueResult();
 	}
+//验证登录名是否重复
+	public User findByUserLoginName(String loginName) {
+		return (User)getSession().createQuery(
+				"FROM User u WHERE u.loginName=?") 
+				.setParameter(0,loginName)
+				.uniqueResult();
+	}
 
 }

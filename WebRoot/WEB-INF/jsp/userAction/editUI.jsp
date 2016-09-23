@@ -20,7 +20,7 @@
 
 <!--显示表单内容-->
 <div id=MainArea>
-    <s:form action="user_edit">
+    <s:form action="user_edit" enctype="multipart/form-data">
     <s:hidden name="id"></s:hidden>
         <div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
         	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/blue/images/item_point.gif" /> 用户信息 </div> 
@@ -40,16 +40,24 @@
                     </tr>
                     <tr><td>登录名</td>
                     
-                        <td><s:textfield name="loginName" cssClass="InputStype" /> *
-							（登录名要唯一）
+                        <td>${loginName}
+						</td>
+                     <td rowspan="5" align="right">
+					<s:if test="#this.user_path == null">
+						<img src="${pageContext.request.contextPath}/style/images/defaultAvatar.gif"/>
+					 </s:if>
+					<s:else>
+							<img src="${user_path}" height="150" width="150"/>
+						</s:else>
 						</td>
                     </tr>
                     <tr><td>姓名</td>
-                        <td><s:textfield name="name" cssClass="InputStype" /> *</td>
+                        <td><s:textfield name="name" cssClass="InputStyle {required:true}"/> *</td>
                     </tr>
 					<tr><td>性别</td>
-                        <td><s:radio name="gender" list="{'男','女'}"></s:radio>
+                        <td><s:radio name="gender" list="{'男','女'}" cssClass="{required:true}"></s:radio>
 						</td>
+						
                     </tr>
 					<tr><td>联系电话</td>
                         <td><s:textfield name="phoneNume" cssClass="InputStyle"/></td>
@@ -58,6 +66,10 @@
                         <td>
                         <s:textfield name="email" cssClass="InputStyple"/>
                         </td>
+                    </tr>
+                     <tr>
+                     <td>头像</td>
+                        <td><input type="file" name="upload" class="InputStyle" style="width: 400px;"/></td>
                     </tr>
                     <tr><td>备注</td>
                         <td><s:textarea name="description" cssClass="TextareaStyle"></s:textarea></td>
