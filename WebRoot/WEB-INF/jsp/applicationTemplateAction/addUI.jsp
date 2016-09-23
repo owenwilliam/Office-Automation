@@ -32,7 +32,7 @@
                 <table cellpadding="0" cellspacing="0" class="mainForm">
 				   	<tr>
                         <td>模板名称</td>
-                        <td><s:textfield name="name" cssClass="InputStyle" />  *</td>
+                        <td><s:textfield name="name" cssClass="InputStyle {required:true}" />  *</td>
                     </tr>
                     <tr>
                         <td>所用流程</td>

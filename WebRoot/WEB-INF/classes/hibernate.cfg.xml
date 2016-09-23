@@ -12,7 +12,9 @@
 		<property name="connection.url">jdbc:mysql://localhost/myoa</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">root</property> -->
-	<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+	<property name="dialect">
+		org.hibernate.dialect.MySQL5InnoDBDialect
+	</property>
 
 	<!-- 其它设置 -->
 
@@ -43,6 +45,7 @@
 		resource="com/linjw/myoa/model/ApplicationTemplate.hbm.xml" />
 	<mapping resource="com/linjw/myoa/model/Application.hbm.xml" />
 	<mapping resource="com/linjw/myoa/model/ApproveInfo.hbm.xml" />
+	<mapping resource="com/linjw/myoa/model/NoticeInfo.hbm.xml" />
 
 </session-factory>
 

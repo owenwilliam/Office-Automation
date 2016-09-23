@@ -34,7 +34,7 @@
                 <table cellpadding="0" cellspacing="0" class="mainForm">
                     <tr>
                         <td width="100">版块名称</td>
-                        <td><s:textfield name="name" cssClass="InputStyle"></s:textfield> *</td>
+                        <td><s:textfield name="name" cssClass="InputStyle {required:true}"></s:textfield> *</td>
                     </tr>
                     <tr>
                         <td>版块说明</td>

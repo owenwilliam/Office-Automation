@@ -39,7 +39,7 @@
                         </td>
                     </tr>
                     <tr><td>部门名称</td>
-                        <td><s:textfield name="name" class="InputStyle"/> *</td>
+                        <td><s:textfield name="name" cssClass="InputStyle {required:true}"/> *</td>
                         
                     </tr>
                     <tr><td>职能说明</td>

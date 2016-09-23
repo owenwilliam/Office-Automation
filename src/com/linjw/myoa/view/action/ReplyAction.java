@@ -61,4 +61,6 @@ public class ReplyAction extends ModelDrivenBaseAction<Reply>{
 	public void setTopicId(Long topicId) {
 		this.topicId = topicId;
 	}
+	
+	
 }

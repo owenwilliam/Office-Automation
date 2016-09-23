@@ -13,4 +13,6 @@ public interface UserService extends DaoSupport<User>{
  */
 	public User findByLoginNameAndPassword(String loginName, String password);
 
+public User findByUserLoginName(String loginName);
+
 }

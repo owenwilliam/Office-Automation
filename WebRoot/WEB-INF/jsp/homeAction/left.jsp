@@ -4,6 +4,8 @@
 		<title>导航菜单</title>
 		<%@ include file="/WEB-INF/jsp/public/commons.jspf"%>
 		<link type="text/css" rel="stylesheet" href="style/blue/menu.css" />
+
+　　　　　<script language="JavaScript" src="script/menu.js"></script>
 		<script type="text/javascript">
 			
 			function menuClick( menu ){

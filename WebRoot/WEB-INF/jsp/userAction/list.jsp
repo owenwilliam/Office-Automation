@@ -18,6 +18,22 @@
 </div>
 
 <div id="MainArea">
+<s:form action="user_list">
+		<table border=0 cellspacing=3 cellpadding=5>
+			<tr>
+				<td>按条件查询：</td>
+				<td><s:select name="departmentId" cssClass="SelectStyle"
+				     list="#departments" listKey="id" listValue="name"
+				     headerKey="" headerValue="查看全部部门" 
+				     />
+				</td>
+				<td>
+				员工姓名：<s:textfield name="userName" cssClass="InputStype"></s:textfield>
+				</td>
+				<td><a href=""><input type="IMAGE" src="${pageContext.request.contextPath}/style/blue/images/button/query.PNG"/></a></td>
+			</tr>
+		</table>
+		</s:form>
     <table cellspacing="0" cellpadding="0" class="TableStyle">
        
         <!-- 表头-->
@@ -37,7 +53,7 @@
         <s:iterator value="recordList">
             <tr class="TableDetail1 template">
                 <td>${loginName}&nbsp;</td>
-                <td>${name}&nbsp;</td>
+                <td><s:a action="user_editUI?id=%{id}">${name}&nbsp;</s:a></td>
                 <td>${department.name}&nbsp;</td>
                 <td>
                 <s:iterator value="stations">

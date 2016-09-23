@@ -32,6 +32,7 @@
 			采用基于外键的一对一映射，本方无外键。 -->
     <one-to-one name="lastReply" property-ref="lastToTopic" cascade="delete"></one-to-one>
          <!-- forum属性，本类与Forum的一对一。采用基于外键的一对一映射，本方有外键。 -->
+  
     <many-to-one name="topicToForum" class="Forum" column="forum_topic_id" unique="true"></many-to-one> 
  	
   </class>

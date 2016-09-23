@@ -22,7 +22,8 @@ public class User {
 	private String phoneNumber;//电话
 	private String email;//邮箱
 	private String description;//说明
-    private String img_path;//用户头像
+    private String img_path;//用户论坛头像
+    private String user_path;//用户真实头像
 	
 	//关联
 	private Department department;
@@ -32,6 +33,7 @@ public class User {
 	private Set<Reply> replies = new HashSet<Reply>();
 	private Set<Application> applications = new HashSet<Application>();
 	private Set<ApproveInfo> approveInfos = new HashSet<ApproveInfo>();
+	private Set<NoticeInfo> noticeInfos = new HashSet<NoticeInfo>();
 
 	/**
 	 * 判断本用户是否指定名称的权限
@@ -198,6 +200,22 @@ public class User {
 
 	public void setImg_path(String img_path) {
 		this.img_path = img_path;
+	}
+
+	public Set<NoticeInfo> getNoticeInfos() {
+		return noticeInfos;
+	}
+
+	public void setNoticeInfos(Set<NoticeInfo> noticeInfos) {
+		this.noticeInfos = noticeInfos;
+	}
+
+	public String getUser_path() {
+		return user_path;
+	}
+
+	public void setUser_path(String user_path) {
+		this.user_path = user_path;
 	}
 
 	
