@@ -179,6 +179,29 @@
 			<result name="editUI">/WEB-INF/jsp/noticeInfoAction/editUI.jsp</result>
 			<result name="toList" type="redirectAction">noticeinfo_list</result>
 		</action>
+		
+		
+		<!-- 个人通讯：通讯分组 -->
+		<action name="group_*" class="groupAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/groupAction/list.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/groupAction/addUI.jsp</result>
+			<result name="editUI">/WEB-INF/jsp/groupAction/editUI.jsp</result>
+			<result name="toList" type="redirectAction">group_list</result>
+		</action>
+		
+		
+		
+		<!-- 个人通讯：通讯录 -->
+		<action name="personinfo_*" class="personinfoAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/personinfoAction/list.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/personinfoAction/addUI.jsp</result>
+			<result name="editUI">/WEB-INF/jsp/personinfoAction/editUI.jsp</result>
+			<result name="show">/WEB-INF/jsp/personinfoAction/show.jsp</result>
+			<result name="chart">/WEB-INF/jsp/personinfoAction/chart.jsp</result>
+			<result name="toList" type="redirectAction">personinfo_list</result>
+			<result name="toShow" type="redirectAction">personinfo_show?groupId=${groupId}</result>
+		</action>
+		
 	</package>
 
 

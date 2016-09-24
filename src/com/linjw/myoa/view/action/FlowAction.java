@@ -1,6 +1,7 @@
 package com.linjw.myoa.view.action;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -122,6 +123,22 @@ public class FlowAction extends BaseAction{
 		ActionContext.getContext().put("approveInfos",application.getApproveInfos());
 		return "approveHistory";
 	}
+	/*
+	*//**
+	 * 测试用的
+	 * @return
+	 *//*
+	public String test()throws Exception{
+		List<ApproveInfo> approveInfos = approveInfoService.findAll();
+		Calendar c = Calendar.getInstance();
+		int month=0;
+		for(int i=0;i<approveInfos.size();i++){
+			c.setTime(approveInfos.get(i).getApproveTime());
+			month= c.get(Calendar.MONTH)+1;
+			System.out.println("================approceInfo  Time:"+month);
+		}
+		return"toMyTaskList";
+	}*/
 	//------
 	public File getUpload() {
 		return upload;

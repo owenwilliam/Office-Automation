@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.linjw.myoa.model">
+  <class table="t_group" name="Group">
+    <id name="id">
+      <generator class="native"/>
+    </id>
+    <property name="name"/>
+    <property name="description"/>
+     <property name="count"/>
+   <!-- person属性，本类与User的多对一 -->
+   <many-to-one name="person" class="User" column="personId"></many-to-one>
+  
+   <!-- personinfos属性本类与Personinfo的多对多 -->
+   <set name="personinfos" cascade="delete">
+     <key column="groupId"></key>
+     <one-to-many class="Personinfo" ></one-to-many>
+   </set>
+ <!-- personinfo属性，本类与Personinfo的一对一。
+			采用基于外键的一对一映射，本方无外键。 -->
+    <one-to-one name="personinfo" property-ref="groups" cascade="delete"></one-to-one>
+  </class>
+</hibernate-mapping>

@@ -46,6 +46,8 @@
 	<mapping resource="com/linjw/myoa/model/Application.hbm.xml" />
 	<mapping resource="com/linjw/myoa/model/ApproveInfo.hbm.xml" />
 	<mapping resource="com/linjw/myoa/model/NoticeInfo.hbm.xml" />
+	<mapping resource="com/linjw/myoa/model/Personinfo.hbm.xml" />
+	<mapping resource="com/linjw/myoa/model/Group.hbm.xml" />
 
 </session-factory>
 

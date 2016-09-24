@@ -36,7 +36,7 @@
                     </tr>
                     <tr>
                         <td>所用流程</td>
-                        <td><<s:select name="processDefinition" list="processDefinitionList" 
+                        <td><s:select name="processDefinition" list="processDefinitionList" 
                         cssClass="SelectStyle" listKey="key" listValue="key" /> *
 						</td>
                     </tr>

@@ -34,6 +34,8 @@ public class User {
 	private Set<Application> applications = new HashSet<Application>();
 	private Set<ApproveInfo> approveInfos = new HashSet<ApproveInfo>();
 	private Set<NoticeInfo> noticeInfos = new HashSet<NoticeInfo>();
+	private Set<Personinfo> personinfos = new HashSet<Personinfo>();
+	private Set<Group> groups = new HashSet<Group>();
 
 	/**
 	 * 判断本用户是否指定名称的权限
@@ -216,6 +218,22 @@ public class User {
 
 	public void setUser_path(String user_path) {
 		this.user_path = user_path;
+	}
+
+	public Set<Personinfo> getPersoninfos() {
+		return personinfos;
+	}
+
+	public void setPersoninfos(Set<Personinfo> personinfos) {
+		this.personinfos = personinfos;
+	}
+
+	public Set<Group> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(Set<Group> groups) {
+		this.groups = groups;
 	}
 
 	

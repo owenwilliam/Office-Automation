@@ -13,6 +13,7 @@ public class Department {
 	private Long id;
 	private String name;
 	private String description;
+	private int count;//部门统计人数
 	
 	//关联
 	private Set<User> users = new HashSet<User>();
@@ -56,6 +57,12 @@ public class Department {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 

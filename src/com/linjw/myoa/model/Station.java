@@ -13,6 +13,7 @@ public class Station {
       private Long id;
       private String name;
       private String description;
+      private int count;//统计岗位人数
       
       //关联
       private Set<User> users = new HashSet<User>();
@@ -49,6 +50,12 @@ public class Station {
 	}
 	public void setPrivileges(Set<Privilege> privileges) {
 		this.privileges = privileges;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	
 }

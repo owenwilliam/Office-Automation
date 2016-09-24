@@ -52,5 +52,18 @@
         <key column="noticeInfoId"></key>
         <one-to-many class="NoticeInfo"/>
      </set>
+     
+      <!-- personinfos属性，本类与Personinfo的一对多 -->
+     <set name="personinfos" cascade="delete">
+        <key column="personinfoId"></key>
+        <one-to-many class="Personinfo"/>
+     </set>
+     
+      
+      <!-- groups属性，本类与Group的一对多 -->
+     <set name="groups" cascade="delete">
+        <key column="personId"></key>
+        <one-to-many class="Group"/>
+     </set>
   </class>
 </hibernate-mapping>

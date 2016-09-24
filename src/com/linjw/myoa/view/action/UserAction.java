@@ -93,7 +93,7 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 	 * 添加页面2----这个方法不好　　有待解决
 	 */
 	public String addUI2() throws Exception{
-		//准备回显数据，departmentList
+		//TODO 准备回显数据，departmentList
 		List<Department> topList = departmentService.findToList();
 		List<Department> departmentList = DepartmentUtils.getAllDepartments(topList);
 		ActionContext.getContext().put("departmentList",departmentList);

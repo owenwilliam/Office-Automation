@@ -8,6 +8,7 @@
     </id>
     <property name="name"/>
     <property name="description"/>
+     <property name="count"/>
     
     <!-- users属性，本类与user的多对多 -->
     <set name="users" table="station_user">

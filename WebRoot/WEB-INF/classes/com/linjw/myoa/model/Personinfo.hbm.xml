@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.linjw.myoa.model">
+  <class table="t_personinfo" name="Personinfo">
+    <id name="id">
+      <generator class="native"/>
+    </id>
+      <property name="name"/>
+    <property name="sex"/>
+    <property name="year"/>
+    <property name="mobile"/>
+    <property name="email"/>
+    <property name="address"/>
+    <property name="description"/>
+    <property name="img_path"/>
+    
+    <!-- person属性，本类与User的多对一 -->
+    <many-to-one name="person" class="User" column="personinfoId" lazy="false"></many-to-one>
+   <!-- group属性，本类与Group的多对一 -->
+   <many-to-one name="group" class="Group" column="groupId" lazy="false"></many-to-one>
+  
+   <!-- group属性，本类与Group的一对一，采用本方有外键 -->
+ <many-to-one name="groups" class="Group" column="personinfoOneId" unique="true"></many-to-one>
+  </class>
+</hibernate-mapping>
