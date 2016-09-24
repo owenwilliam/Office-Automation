@@ -14,9 +14,12 @@ import org.apache.struts2.ServletActionContext;
 import com.linjw.myoa.model.User;
 import com.linjw.myoa.service.ApplicationService;
 import com.linjw.myoa.service.ApplicationTemplateService;
+import com.linjw.myoa.service.ApproveInfoService;
 import com.linjw.myoa.service.DepartmentService;
 import com.linjw.myoa.service.ForumService;
+import com.linjw.myoa.service.GroupService;
 import com.linjw.myoa.service.NoticeInfoService;
+import com.linjw.myoa.service.PersoninfoService;
 import com.linjw.myoa.service.PrivilegeService;
 import com.linjw.myoa.service.ProcessDefinitionService;
 import com.linjw.myoa.service.ReplyService;
@@ -58,6 +61,12 @@ public abstract class BaseAction extends ActionSupport {
 	protected ApplicationService applicationService;
 	@Resource
 	protected NoticeInfoService noticeInfoService;
+	@Resource
+	protected ApproveInfoService approveInfoService;
+	@Resource
+	protected PersoninfoService personinfoService;
+	@Resource
+	protected GroupService groupService;
 	
 	/**
 	 * 获取当前登录的用户
