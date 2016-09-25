@@ -25,7 +25,14 @@ import com.opensymphony.xwork2.ActionContext;
 @SuppressWarnings("serial")
 public class UserAction extends ModelDrivenBaseAction<User> {
 	private Long departmentId;
+	private Long departmentId_c;//备份部门的id
+	
 	private Long[] stationIds;
+	private int index_c;//备份岗位的索引
+	private Long[]stationIds_c ;//备份岗位
+	private boolean flag; //岗位是否变化了
+	
+	
 	private String md5Digest = DigestUtils.md5Hex("1234");//转化为32位的十六进制的数
 	
 	
@@ -72,6 +79,34 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 	 * 删除
 	 */
 	public String delete()throws Exception{
+		//准备回显的数据，对象栈user
+		User user = userService.getById(model.getId());
+		//>>岗位count减一
+		if(user.getStations() != null){
+			stationIds = new Long[user.getStations().size()];
+			int index = 0;
+			for(Station station : user.getStations()){
+				stationIds[index++] = station.getId();
+			}
+		
+		
+		List<Station> stationList = stationService.getByIds(stationIds);
+		for(Station s:stationList){
+			if(s.getCount()>0){
+			s.setCount(s.getCount()-1);
+			stationService.update(s);
+			}
+		  }
+		}
+		//部门count减一
+		if(user.getDepartment() != null){
+			departmentId = user.getDepartment().getId();
+			Department department = departmentService.getById(departmentId);
+			if(department.getCount()>0){
+			department.setCount(department.getCount()-1);
+			departmentService.update(department);
+			}
+		}
 		userService.delete(model.getId());
 		return "toList";
 	}
@@ -109,17 +144,29 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 	 */
 	public String add() throws Exception{
 		User user = userService.findByUserLoginName(model.getLoginName());
-		if(user != null){
+		if(user != null){//如果登录名已存在了
 			
 			 return "toaddUI"; 
 			
 		}else{
-		//封装到对象中（当model是实体类型时，也可以使用model,但要设置未封装的属性）
-		//>>设置所属部门
-		model.setDepartment(departmentService.getById(departmentId));
+			if(departmentId !=null){
+					Department department = departmentService.getById(departmentId); 
+				//封装到对象中（当model是实体类型时，也可以使用model,但要设置未封装的属性）
+				//>>设置所属部门
+				model.setDepartment(department);
+				//>>设置所属部门的count的值
+				department.setCount(department.getCount()+1);
+				departmentService.update(department);
+			}
 		//>>设置关联的岗位
 		List<Station> stationList = stationService.getByIds(stationIds);
 		model.setStations(new HashSet<Station>(stationList));
+		//>>设置新并联岗位的count加1
+		for(Station s:stationList){
+			s.setCount(s.getCount()+1);
+			stationService.update(s);
+		}
+
 		//>>设置默认密码为1234（使用MD5摘要）
 		model.setPassword(md5Digest);
 		//>>创建文件来夹用来放图片
@@ -136,6 +183,7 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 	 * 修改页面
 	 */
 	public String editUI() throws Exception{
+	
 		//准备数据，departmentList
 		List<Department> topList = departmentService.findToList();
 		List<Department> departmentList = DepartmentUtils.getAllDepartments(topList);
@@ -153,13 +201,22 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 		//给dedpartmentId与sationId设值,用于select标签
 		if(user.getDepartment() != null){
 			departmentId = user.getDepartment().getId();
+			departmentId_c = user.getDepartment().getId();
 		}
+		
 		if(user.getStations() != null){
 			stationIds = new Long[user.getStations().size()];
 			int index = 0;
 			for(Station station : user.getStations()){
 				stationIds[index++] = station.getId();
 			}
+			
+			//保存数据并带到jsp页面中，再带回
+			stationIds_c = new Long[user.getStations().size()];
+			
+			for(Station station_c : user.getStations()){
+				stationIds_c[index_c++] = station_c.getId();
+			}	
 		}
 		
 		return "editUI";
@@ -180,10 +237,89 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 		user.setEmail(model.getEmail());
 		user.setDescription(model.getDescription());
 		//>>设置所属部门
-		user.setDepartment(departmentService.getById(departmentId));
+		if(departmentId == departmentId_c){
+		   user.setDepartment(departmentService.getById(departmentId));
+		}else{
+			//原先的部门count减一
+			if(user.getDepartment() != null){
+				Department department_c = departmentService.getById(departmentId_c);
+				if(department_c.getCount()>0){
+				department_c.setCount(department_c.getCount()-1);
+				departmentService.update(department_c);
+				}
+			} 
+				//新的部门加一
+				if(departmentId !=null){
+					Department department = departmentService.getById(departmentId); 
+				//封装到对象中（当model是实体类型时，也可以使用model,但要设置未封装的属性）
+				//>>设置所属部门
+					user.setDepartment(department);
+				//>>设置所属部门的count的值
+				department.setCount(department.getCount()+1);
+				departmentService.update(department);
+			 }
+		  
+		}
 		//>>设置所属岗位
-		List<Station> stationList = stationService.getByIds(stationIds);
-		user.setStations(new HashSet<Station>(stationList));
+		
+		if(stationIds.length !=stationIds_c.length){//>>通过数组的长度判断是否已被修改
+				//如果修改了	原先的减一.
+					//>>找到原先的岗位
+					List<Station> stationList_c = stationService.getByIds(stationIds_c);
+					//>>原先的岗位逐个减一
+					for(Station sc:stationList_c){
+						if(sc.getCount()>0){
+						sc.setCount(sc.getCount()-1);
+						}
+						stationService.update(sc);
+					}
+					
+					//>>设置关联的岗位 加一
+					List<Station> stationList = stationService.getByIds(stationIds);
+					user.setStations(new HashSet<Station>(stationList));
+					//>>设置新的岗位逐个加一
+					for(Station s:stationList){
+						s.setCount(s.getCount()+1);
+						stationService.update(s);
+					}
+			
+			
+		}else{//如果岗位的数量一样，就判断其岗位的名称是否一样
+		
+					for(int i=0;i<stationIds.length;i++){
+						if(stationIds_c[i]==stationIds[i]){
+							flag=true;//如果一样就
+						}else{
+							flag=false;//如果有一个不一样就停止
+							break;
+						}
+					}
+	
+			
+					if(flag){//都一样，直接保存
+						List<Station> stationList = stationService.getByIds(stationIds);
+						user.setStations(new HashSet<Station>(stationList));
+					}else{//不一样就
+						//
+						//>>原先的减一
+						List<Station> stationList_c = stationService.getByIds(stationIds_c);
+					//	user.setStations(new HashSet<Station>(stationList));
+						for(Station sc:stationList_c){
+							if(sc.getCount()>0){
+							sc.setCount(sc.getCount()-1);
+							}
+							stationService.update(sc);
+						}
+						//>>设置关联的岗位 加一
+						List<Station> stationList = stationService.getByIds(stationIds);
+						//>>设置新并联岗位的count加1
+						for(Station s:stationList){
+							s.setCount(s.getCount()+1);
+							stationService.update(s);
+						}
+						user.setStations(new HashSet<Station>(stationList));
+			}
+		}
 		//>>创建文件来夹用来放图片
 		if(upload != null){//如果upload不为空
 		String path = saveUploadFile(upload);
@@ -383,6 +519,38 @@ public class UserAction extends ModelDrivenBaseAction<User> {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public Long[] getStationIds_c() {
+		return stationIds_c;
+	}
+
+	public void setStationIds_c(Long[] stationIds_c) {
+		this.stationIds_c = stationIds_c;
+	}
+
+	public boolean isFlag() {
+		return flag;
+	}
+
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
+
+	public Long getDepartmentId_c() {
+		return departmentId_c;
+	}
+
+	public void setDepartmentId_c(Long departmentId_c) {
+		this.departmentId_c = departmentId_c;
+	}
+
+	public int getIndex_c() {
+		return index_c;
+	}
+
+	public void setIndex_c(int index_c) {
+		this.index_c = index_c;
 	}
 
 }

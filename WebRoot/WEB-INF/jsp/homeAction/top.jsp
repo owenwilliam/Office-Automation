@@ -5,8 +5,7 @@
 	<%@ include file="/WEB-INF/jsp/public/commons.jspf"%>
 	<LINK href="${pageContext.request.contextPath}/style/blue/top.css" type=text/css rel=stylesheet>
 	
-	<script type="text/javascript">
-	</script>
+	
 	<style type="text/css">
 		#messageArea{
 			color: white;
@@ -43,11 +42,12 @@
             </a>
       
         </div>
+    
         <div id="Head1Right_Button">
-            <a target="desktop" href="javascript:void(0)"><img width="65" height="20" alt="显示桌面" src="${pageContext.request.contextPath}/style/blue/images/top/desktop.gif" /></a>
+           <a target="right" href="home_right.action"><img width="65" height="20" alt="显示桌面" src="${pageContext.request.contextPath}/style/blue/images/top/desktop.gif" /></a>
          
         </div>
-        
+
        
 	</div>
     
@@ -81,7 +81,7 @@
 				scrollamount=1 scrolldelay=30 direction=left>
 				<b>
 				<s:iterator value="#noticeInfos">
-				${content}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				${content}&nbsp;&nbsp;${postTime }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</s:iterator>
 				</b>
 			</marquee>

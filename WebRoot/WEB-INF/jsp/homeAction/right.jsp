@@ -4,8 +4,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
+
 </head>
 
-<body>
+
+<body  style="background-image:url('${pageContext.request.contextPath}/style/images/top/desk.jpg')" width="100%" height="100%" >
 </body>
 </html>
