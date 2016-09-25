@@ -53,6 +53,7 @@
 			<result name="addUI">/WEB-INF/jsp/stationAction/addUI.jsp</result>
 			<result name="editUI">/WEB-INF/jsp/stationAction/editUI.jsp</result>
 			<result name="setPrivilegeUI">/WEB-INF/jsp/stationAction/setPrivilegeUI.jsp</result>
+			<result name="chart">/WEB-INF/jsp/stationAction/chart.jsp</result>
 			<result name="toList" type="redirectAction">station_list</result>
 
 		</action>
@@ -62,6 +63,7 @@
 			<result name="list">/WEB-INF/jsp/departmentAction/list.jsp</result>
 			<result name="addUI">/WEB-INF/jsp/departmentAction/addUI.jsp</result>
 			<result name="editUI">/WEB-INF/jsp/departmentAction/editUI.jsp</result>
+			<result name="chart">/WEB-INF/jsp/departmentAction/chart.jsp</result>
 			<result name="toList" type="redirectAction">department_list?parentId=${parentId}</result>
 		</action>
 
@@ -104,6 +106,7 @@
 		<action name="forum_*" class="forumAction" method="{1}">
 			<result name="list">/WEB-INF/jsp/forumAction/list.jsp</result>
 			<result name="show">/WEB-INF/jsp/forumAction/show.jsp</result>
+			<result name="chart">/WEB-INF/jsp/forumAction/chart.jsp</result>
 		</action>
 
 		<!-- 论坛：主题相关功能 -->

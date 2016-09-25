@@ -92,7 +92,7 @@
                 <table cellpadding="0" cellspacing="0" class="mainForm">
                     <tr>
 						<td width="100">岗位</td>
-                        <td>	<s:select name="stationIds" cssClass="SelectStyle"
+                        <td>	<s:select name="stationIds" cssClass="SelectStyle {required:true}"
                         		multiple="true" size="10" 
                         		list="#stationList" listKey="id" listValue="name"
                         	/>

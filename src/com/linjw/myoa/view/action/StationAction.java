@@ -1,15 +1,19 @@
 package com.linjw.myoa.view.action;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.linjw.myoa.base.ModelDrivenBaseAction;
+import com.linjw.myoa.model.Chart;
 import com.linjw.myoa.model.Privilege;
 import com.linjw.myoa.model.Station;
-import com.linjw.myoa.model.User;
 import com.linjw.myoa.util.QueryHelper;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -91,6 +95,48 @@ public class StationAction extends ModelDrivenBaseAction<Station>{
 		stationService.update(stations);
 		return "toList";
 	}
+	
+	/**
+	 * 图表---饼图
+	 * @return
+	 */
+	//获取数据集
+	 private DefaultPieDataset getDataSet2() { 
+	    	
+   List<Station> stations = stationService.findAll();
+   DefaultPieDataset dataset = new DefaultPieDataset(); 
+	    for(Station s : stations){   
+	        dataset.setValue(s.getName(),s.getCount()); 
+	    }
+	        return dataset; 
+	    }
+	 
+	 /**
+	  * 柱图
+	  * @return
+	  */
+	 //收集数据
+	 private CategoryDataset getDataSet() { 
+		 List<Station> stations = stationService.findAll();
+		 DefaultCategoryDataset dataset = new DefaultCategoryDataset(); 
+		 for(Station s : stations){
+			 dataset.addValue(s.getCount(),s.getName(),s.getName());
+		 }
+		 return dataset; 
+	 } 
+
+	//报表
+	 public String chart() throws IOException{ 
+		 DefaultPieDataset dataset = getDataSet2(); 
+		 CategoryDataset dataset_bar = getDataSet(); 
+		 Chart chart = new Chart();
+           chart.PieChar(dataset,"岗位统计>>饼图","pieChart.jpg");
+           chart.BarChart(dataset_bar, "岗位统计>>柱图", "岗位","人数", "barChart.jpg");
+       return "chart";
+
+	    } 
+	 
+
 	//---------
 	public Long[] getPrivilegeIds() {
 		return privilegeIds;

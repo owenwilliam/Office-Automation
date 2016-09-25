@@ -42,8 +42,8 @@ public class Installer {
 	//系统管理权根
 		
 		menu = new Privilege("系统管理",null,null);
-		menu1 = new Privilege("岗位管理","/station_list",menu);
-		menu2 = new Privilege("部门管理","/department_list",menu);
+		menu1 = new Privilege("部门管理","/department_list",menu);
+		menu2 = new Privilege("岗位管理","/station_list",menu);
 		menu3 = new Privilege("用户管理","/user_list",menu);
 		session.save(menu);
 		session.save(menu1);
@@ -106,24 +106,22 @@ public class Installer {
 		session.save(menu);
 		session.save(menu1);
 		session.save(menu2);
-		//个人办公
-		menu = new Privilege("个人办公",null,null);
-		menu1 = new Privilege("个人考勤","/myOfficail_attend",menu);
-		menu2 = new Privilege("日程安排","/myOfficial_dayPlan",menu);
-		menu3 = new Privilege("工作计划","/myOfficial_workPlan",menu);
-		menu4 = new Privilege("工作日记","/myOfficial_workWord",menu);
-		menu5 = new Privilege("通讯录","/myOfficial_tell",menu);
-		session.save(menu);
-		session.save(menu1);
-		session.save(menu2);
-		session.save(menu3);
-		session.save(menu4);
-		session.save(menu5);
+	
 		//个人通讯
 		menu = new Privilege("个人通讯",null,null);
 		menu1 = new Privilege("通讯列表","/personinfo_list",menu);
 		menu2 = new Privilege("通讯分组","/group_list",menu);
 		menu3 = new Privilege("讯友统计","/personinfo_chart",menu);
+		session.save(menu);
+		session.save(menu1);
+		session.save(menu2);
+		session.save(menu3);
+		
+		//统计图
+		menu = new Privilege("统计图",null,null);
+		menu1 = new Privilege("部门统计","/department_chart",menu);
+		menu2 = new Privilege("岗位统计","/station_chart",menu);
+		menu3 = new Privilege("论坛统计","/forum_chart",menu);
 		session.save(menu);
 		session.save(menu1);
 		session.save(menu2);

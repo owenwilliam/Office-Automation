@@ -3,7 +3,12 @@
 <head>
 	<title>用户信息--添加</title>
       　<%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
+<script type="text/javascript">
 
+		$(function(){
+				$("select[name=stationIds_c]").hide();		
+		});
+	</script>
 </head>
 <body>
 
@@ -21,7 +26,9 @@
 <!--显示表单内容-->
 <div id=MainArea>
     <s:form action="user_edit" enctype="multipart/form-data">
-    <s:hidden name="id"></s:hidden>
+    <s:hidden name="id"></s:hidden><%--
+    <s:hidden name="stationIds_c"></s:hidden>
+     --%><s:hidden name="departmentId_c"></s:hidden>
         <div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
         	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/style/blue/images/item_point.gif" /> 用户信息 </div> 
         </div>
@@ -92,7 +99,17 @@
                         		multiple="true" size="10" 
                         		list="#stationList" listKey="id" listValue="name" 
                         	/>
+               <!-- 此处用JQUERY隐藏了 -->
+                        	<s:select name="stationIds_c" cssClass="SelectStyle "
+                        		multiple="true" size="10" 
+                        		list="#stationList" listKey="id" listValue="name" 
+                        	/>
+
                             按住Ctrl键可以多选或取消选择
+                        
+                        <s:iterator value="#stationList">
+                         <s:hidden name="stationIds_c"></s:hidden>
+                        </s:iterator>
                         </td>
                     </tr>
                 </table>
