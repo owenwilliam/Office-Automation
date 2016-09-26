@@ -122,12 +122,5 @@
 
 <!--分页信息-->
 <%@ include file="/WEB-INF/jsp/public/pageView.jspf" %>
-
-<div class="Description">
-	说明：<br />
-	1，主题默认按最后更新的时间降序排列。最后更新时间是指主题最后回复的时间，如果没有回复，就是主题发表的时间。<br />
-	2，帖子有普通、置顶、精华之分。置顶贴始终显示在最上面，精华贴用不同的图标标示。<br />
-</div>
-
 </body>
 </html>

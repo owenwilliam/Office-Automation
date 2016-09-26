@@ -48,12 +48,6 @@
         </div>
     </div>
 </div>
-
-<div class="Description">
-	说明：<br />
-	1，审批信息列表按审批时间升序排列。<br />
-</div>
-
 </body>
 </html>
     

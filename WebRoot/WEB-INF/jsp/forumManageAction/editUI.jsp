@@ -1,8 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-
-
-  　
-
 <head>
 	<title>版块设置</title>
     <%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
@@ -51,11 +47,5 @@
         </div>
     </s:form>
 </div>
-
-<div class="Description">
-	说明：<br />
-	1，新添加的版块默认显示在最下面。<br />
-</div>
-
 </body>
 </html>

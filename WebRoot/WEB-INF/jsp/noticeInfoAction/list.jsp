@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-
 <html>
 <head>
 	<title>发布信息</title>
@@ -49,7 +48,7 @@
 							--%><!--操作列表-->
 						
 									<s:a action="noticeinfo_editUI?id=%{id}" class="detail" ><img border="0" src="${pageContext.request.contextPath}/style/images/edit.gif" />编辑</s:a>
-									<s:a action="noticeinfo_delete?id=%{id}" class="detail" onClick="return confirm('确定要删除本信息吗？')"><img border="0" src="${pageContext.request.contextPath}/style/images/delete.gif" />删除</s:a>
+									<s:a action="noticeinfo_delete?id=%{id}" class="detail" onClick="return confirm('确定要删除本信息吗？'),onTopMenuLoad();"><img border="0" src="${pageContext.request.contextPath}/style/images/delete.gif" />删除</s:a>
 						　　　　　　　<a href="javascript:scroll(0,0)"><img border="0" src="${pageContext.request.contextPath}/style/images/top.gif" /></a>
 					
 					</td>
@@ -129,13 +128,5 @@
 			
 	
 </div>
-
-<div class="Description">
-	说明：<br />
-	1，主帖只在第一页显示。<br />
-	2，只有是管理员才可以进行“移动”、“编辑”、“删除”、“精华”、“置顶”的操作。<br />
-	3，删除主帖，就会删除所有的跟帖（回复）。<br />
-</div>
-
 </body>
 </html>

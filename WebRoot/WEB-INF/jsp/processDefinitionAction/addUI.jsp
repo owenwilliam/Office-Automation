@@ -45,10 +45,5 @@
         </div>
     </s:form>
 </div>
-
-<div class="Description">
-	说明：只接受zip扩展名的文件。
-</div>
-
 </body>
 </html>

@@ -73,11 +73,5 @@
         </div>
     </s:form>
 </div>
-
-<div class="Description">
-	验证规则：<br />
-	1，可以修改自已的头像，在右侧是头像的预览。<br />
-</div>
-
 </body>
 </html>

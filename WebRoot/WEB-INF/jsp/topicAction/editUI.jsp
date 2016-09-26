@@ -1,7 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-
-   
-
 <html>
 <head>
 	<title>发表新主题</title>
@@ -82,11 +79,6 @@
 		</div>
 	</center>
 	</s:form>
-</div>
-
-<div class="Description">
-	说明：<br />
-	
 </div>
 
 </body>

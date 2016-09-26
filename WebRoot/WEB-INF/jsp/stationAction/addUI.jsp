@@ -1,12 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-
 <html>
 <head>
 	<title>岗位设置</title>
    　<%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
 </head>
 <body> 
-
 <!-- 标题显示 -->
 <div id="Title_bar">
     <div id="Title_bar_Head">
@@ -17,10 +15,8 @@
         <div id="Title_End"></div>
     </div>
 </div>
-
 <!--显示表单内容-->
 <div id="MainArea">
-
     <s:form action="station_add">
     	<s:hidden name="id"></s:hidden>
     

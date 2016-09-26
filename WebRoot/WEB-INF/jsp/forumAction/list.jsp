@@ -27,8 +27,8 @@
 					<td colspan="3" class="ForumPageTableTitleLeft">版块</td>
 					<td width="80" class="ForumPageTableTitle">主题数</td>
 					<td width="80" class="ForumPageTableTitle">文章数</td>
-					<td width="270" class="ForumPageTableTitle">最后发表的主题</td>
-				</tr>
+					<%--<td width="270" class="ForumPageTableTitle">最后发表的主题</td>
+				--%></tr>
 				<tr height="1" class="ForumPageTableTitleLine"><td colspan="9"></td></tr>
 				<tr height="3"><td colspan="9"></td></tr>
 			
@@ -48,7 +48,7 @@
 					</td>
 					<td class="ForumPageTableDataLine"><b>${topicCount}</b></td>
 					<td class="ForumPageTableDataLine"><b>${articleCount}</b></td>
-					<td class="ForumPageTableDataLine">
+					<%--<td class="ForumPageTableDataLine">
 						<ul class="ForumPageTopicUl">
 							<li><font color="#444444">┌ 主题：</font> 
 								<s:a cssClass="ForumTitle" action="topic_show?id=%{id}">${lastTopic.title}</s:a>
@@ -57,7 +57,7 @@
 							<li><font color="#444444">└ 时间：</font> ${lastTopic.postTime}</li>
 						</ul>
 					</td>
-					<td width="3"></td>
+					--%><td width="3"></td>
 				</tr>
 				</s:iterator>
 				</tbody>

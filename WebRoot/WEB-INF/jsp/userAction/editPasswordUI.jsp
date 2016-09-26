@@ -69,12 +69,5 @@
     </s:form>
 </div>
 
-<div class="Description">
-	验证规则：<br />
-	1，旧密码不能为空。<br />
-	2，新密码不能为空。<br />
-	3，再次输入的密码要和新密码一致。<br />
-</div>
-
 </body>
 </html>
