@@ -51,10 +51,5 @@
 		</tr>
 	</tbody>
 </table>
-
-<div class="Description">
-	说明：此页面是列出所有的表单模板记录<br />
-</div>
-
 </body>
 </html>

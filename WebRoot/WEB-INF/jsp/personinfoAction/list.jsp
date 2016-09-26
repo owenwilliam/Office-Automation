@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-       
 <html>
 <head>
 	<title>分组显示</title>
@@ -51,8 +50,6 @@
 				</s:iterator>
 				</tbody>
 				<!-- 版面列表结束 -->
-				
-
 			</table>
 		</div>
 	</center>

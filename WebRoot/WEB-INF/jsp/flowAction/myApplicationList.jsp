@@ -54,36 +54,16 @@
 				<td>相关操作</td>
 			</tr>
 		</thead>	
-				
-		<!--显示数据列表：被退回的我的表的单显示示例
-		<tbody id="TableData" class="dataContainer" datakey="formList">
-			-->
-			<!-- 被退回的我的表的单显示示例 
-			<tr class="TableDetail1 template">
-				<td><a href="${pageContext.request.contextPath}/Flow_Formflow/showForm.html">${form.title}</a></td>
-				<td>${form.applicant.name}&nbsp;</td>
-				<td>${form.applyTime}&nbsp;</td>
-				<td>审批中&nbsp;</td>
-				<td><a href="${pageContext.request.contextPath}/Flow_Formflow/showForm.html">查看申请信息</a>
-					<a href="${pageContext.request.contextPath}/Flow_Formflow/approvedHistory.html">查看流转记录</a>
-					<a href="${pageContext.request.contextPath}/Flow_Formflow/editAndResubmitUI.html">修改后再次提交</a>
-					<a href="#" onClick="return delConfirm()">删除</a>
-				</td>
-			</tr>
-		</tbody>
-		-->
-
 		<!--显示数据列表：正在审批或审批完成的表单显示示例-->
         <tbody id="TableData" class="dataContainer" datakey="formList">
 			<!-- 正在审批或审批完成的表单显示示例 -->
 			<s:iterator value="recordList">
 			<tr class="TableDetail1 template">
-				<td><a href="${pageContext.request.contextPath}/Flow_Formflow/showForm.html">${title}</a></td>
+				<td>${title}</td>
 				<td>${applicant.name}&nbsp;</td>
 				<td>${applyTime}&nbsp;</td>
 				<td>${status}&nbsp;</td>
-				<td><%--<a href="${pageContext.request.contextPath}/Flow_Formflow/showForm.html">查看申请信息</a>
-					--%><s:a action="flow_approveHistory?applicationId=%{id}">查看流转记录</s:a>
+				<td><s:a action="flow_approveHistory?applicationId=%{id}">查看流转记录</s:a>
 				</td>
 			</tr>
 			</s:iterator>
@@ -97,15 +77,6 @@
 <!--分页信息-->
 	<%@ include file="/WEB-INF/jsp/public/pageView.jspf" %>
 		<s:form action="flow_submit?id=%{id}"></s:form>
-
-<div class="Description">
-	说明：<br />
-	<!--
-	1，对于退回的表单，可以执行“修改后再次提交”与“删除”的操作。<br />&nbsp;&nbsp;
-	   其他状态表单（正在审批的或是审批完成的）则没有这两个操作。<br />
-	   2，删除退回的申请文档后，此文档相关的审批信息也要同时删除，对应的流程也终止了。<br />
-	   -->
-</div>
 
 </body>
 </html>

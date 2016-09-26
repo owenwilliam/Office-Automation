@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
-	<title>您已退出Itcast OA系统</title>
+	<title>您已退出永成科技办公自动化系统</title>
      <%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
 	<link href="${pageContext.request.contextPath}/style/blue/logout.css" rel="stylesheet" type="text/css">
 </head>

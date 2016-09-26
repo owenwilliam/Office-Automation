@@ -51,13 +51,6 @@
 					<s:a action="template_addUI"><img src="${pageContext.request.contextPath}/style/images/createNew.png"/></s:a>
         </div>
     </div>
-
-	<div class="description">
-		说明：<br />
-		1，删除时，相应的文件也被删除。<br />
-		2，下载时，文件名默认为：{表单模板名称}.doc<br />
-	</div>
-
 </div>
 </body>
 </html>

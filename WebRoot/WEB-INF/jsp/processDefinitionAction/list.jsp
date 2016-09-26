@@ -1,6 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-   　
-
 <html>
 <head>
     <title>审批流程列表</title>
@@ -73,12 +71,5 @@
         </div>
     </div>
 </div>
-
-<div class="Description">
-	说明：<br />
-	1，列表显示的是所有流程定义（不同名称）的最新版本。<br />
-	2，删除流程定义时，此名称的所有版本的流程定义都会被删除。<br />
-</div>
-
 </body>
 </html>

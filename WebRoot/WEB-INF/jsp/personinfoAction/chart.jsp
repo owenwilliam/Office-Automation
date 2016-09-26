@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
    <%@ include file="/WEB-INF/jsp/public/commons.jspf" %> 
- 
 <html>
 <head>
     <title>分组具体显示</title>
@@ -16,8 +15,6 @@
         <div id="Title_End"></div>
     </div>
 </div>
-
-
 <div id="QueryArea">
 	<div style="height: 30px">
 		 

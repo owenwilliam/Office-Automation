@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
-	<title>Itcast OA</title>
+	<title>永成科技　办公自动化系统</title>
 	<%@ include file="/WEB-INF/jsp/public/commons.jspf"%>	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/script/jquery_treeview/jquery.cookie.js"></script>
 </head>

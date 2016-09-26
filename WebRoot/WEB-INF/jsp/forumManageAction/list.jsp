@@ -67,12 +67,5 @@
         </div>
     </div>
 </div>
-
-<div class="Description">
-	说明：<br />
-	1，显示的列表按其sortOrder值升序排列。<br />
-	2，可以通过上移与下移功能调整顺序。最上面的不能上移，最下面的不能下移。<br />
-</div>
-
 </body>
 </html>

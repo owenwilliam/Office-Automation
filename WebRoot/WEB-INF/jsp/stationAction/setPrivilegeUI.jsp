@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-
 <html>
 <head>
 <title>配置权限</title>
@@ -66,11 +65,7 @@
 					<tbody id="TableData">
 						<tr class="TableDetail1">
 							<!-- 显示权限树 -->
-							<td>
-
-<%--<s:checkboxlist name="privilegeIds" list="#privilegeList" listKey="id" listValue="name"></s:checkboxlist>
---%>
-							
+							<td>					
 <ul id="tree">
 <s:iterator value="#application.topPrivilegeList">
 	<li>
@@ -113,20 +108,6 @@
         </div>
     </s:form>
 </div>
-
-<div class="Description">
-	说明：<br />
-	1，选中一个权限时：<br />
-	&nbsp;&nbsp;&nbsp;&nbsp; a，应该选中他的所有直系上级。<br />
-	&nbsp;&nbsp;&nbsp;&nbsp; b，应该选中他的所有直系下级。<br />
-	2，取消选择一个权限时：<br />
-	&nbsp;&nbsp;&nbsp;&nbsp; a，应该取消选择他的所有直系下级。<br />
-	&nbsp;&nbsp;&nbsp;&nbsp; b，如果同级的权限都是未选择状态，就应该取消选中他的直接上级，并向上做这个操作。<br />
-
-	3，全选/取消全选。<br />
-	4，默认选中当前岗位已有的权限。<br />
-</div>
-
 </body>
 </html>
     

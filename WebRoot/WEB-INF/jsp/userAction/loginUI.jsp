@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
-	<title>Itcast OA</title>
+	<title>永成科技</title>
     <%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
 	<link href="${pageContext.request.contextPath}/style/blue/login.css" type=text/css rel=stylesheet>
 	<script type="text/javascript">
@@ -24,7 +24,11 @@
 <s:form action="user_login" focusElement="loginNameInput">
     <div id="CenterAreaBg"> 
         <div id="CenterArea">
-            <div id="LogoImg"><img border="0" src="${pageContext.request.contextPath}/style/blue/images/logo.png" /></div>
+            <div id="LogoImg">
+<font color="#0000CC" style="color:#F1F9FE; font-size:30px; font-family:Arial Black, Arial">办公自动化系统</font><br />
+<font color="#0000CC" style="color:#F1F9FE; font-size:20px; font-family:Arial Black, Arial">Office Automation System</font>
+
+            </div>
             <div id="LoginInfo">
                 <table BORDER=0 CELLSPACING=0 CELLPADDING=0 width=100%>
                 	<tr>
@@ -47,7 +51,7 @@
                     </tr>
                 </table>
             </div>
-            <div id="CopyRight"><a href="javascript:void(0)">&copy; 2010 版权所有 itcast</a></div>
+            <div id="CopyRight"><a href="javascript:void(0)">&copy; 2014 版权所有 林剑文</a></div>
         </div>
     </div>
     </s:form>

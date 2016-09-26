@@ -48,11 +48,5 @@
         </div>
     </s:form>
 </div>
-
-<div class="Description">
-	说明：<br />
-	1，新添加的版块默认显示在最下面。<br />
-</div>
-
 </body>
 </html>

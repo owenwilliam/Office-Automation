@@ -78,11 +78,5 @@
 	</center>
 </s:form>
 </div>
-
-<div class="Description">
-	说明：<br />
-	
-</div>
-
 </body>
 </html>
